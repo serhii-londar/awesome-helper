@@ -9,11 +9,11 @@
 import UIKit
 import SwipeCellKit
 
-class QueriesVC: UIViewController {
+class QueriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
-    
-    var repositoryHelper: RepositoryHelper! = nil
+    var readmeString: String! = nil
     var queries: Queries! = nil
+    var repository: Repository! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +24,10 @@ class QueriesVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         do {
-            self.repositoryHelper = try RepositoryHelper(repositoryName: "open-source-mac-os-apps", remoteRepositoryStringURL: "https://github.com/serhii-londar/open-source-mac-os-apps.git")
-            self.queries = try Queries(repositoryName: "open-source-mac-os-apps")
+            self.queries = try Queries(repositoryName: queries.repositoryName)
         } catch {
-            print(error)
+            self.showErrorAlert(error.localizedDescription)
         }
-        self.push()
         tableView.reloadData()
     }
     
@@ -38,10 +36,6 @@ class QueriesVC: UIViewController {
         let addQueryVC = storyboard.instantiateViewController(withIdentifier: "AddQueryVC") as! AddQueryVC
         addQueryVC.queries = self.queries
         self.navigationController?.pushViewController(addQueryVC, animated: true)
-    }
-    
-    func push() {
-//        self.repositoryHelper.commit()
     }
 }
 
@@ -52,7 +46,7 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             let query = self.queries.queries[indexPath.row]
             do {
-                try self.queries.removeQuery(query.query)
+                try self.queries.removeQuery(query)
             } catch {
                 print(error)
                 self.showErrorAlert(error.localizedDescription)
@@ -68,10 +62,11 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let repositoryVC = storyboard.instantiateViewController(withIdentifier: "RepositoriesVC") as! RepositoriesVC
-        repositoryVC.repositoryHelper = repositoryHelper
-        repositoryVC.query = self.queries.queries[indexPath.row]
+        let repositoryVC = Storyboards.Main.instantiateSearchRepositoriesVC()
+        repositoryVC.readmeString = readmeString
+        repositoryVC.searchQuery = self.queries.queries[indexPath.row]
+        repositoryVC.repository = self.repository
+        repositoryVC.queries = self.queries
         self.navigationController?.pushViewController(repositoryVC, animated: true)
     }
     
@@ -80,6 +75,10 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
         cell.setupWith(self.queries.queries[indexPath.row])
         cell.delegate = self
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return -1
     }
 }
 

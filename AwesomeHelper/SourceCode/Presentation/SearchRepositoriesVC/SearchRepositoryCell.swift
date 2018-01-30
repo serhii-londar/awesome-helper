@@ -12,7 +12,7 @@ import GithubAPI
 import Kingfisher
 import NSDate_TimeAgo
 
-class RepositoryCell: SwipeTableViewCell {
+class SearchRepositoryCell: SwipeTableViewCell {
     @IBOutlet weak var ownerAvatar: UIImageView! = nil
     @IBOutlet weak var repoName: UILabel! = nil
     @IBOutlet weak var repoDescription: UILabel! = nil

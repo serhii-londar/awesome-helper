@@ -12,10 +12,12 @@ import GithubAPI
 import ESPullToRefresh
 import SwipeCellKit
 
-class RepositoriesVC: UIViewController {
+class SearchRepositoriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
-    var repositoryHelper: RepositoryHelper! = nil
-    var query: Query! = nil
+    var readmeString: String! = nil
+    var searchQuery: String! = nil
+    var queries: Queries! = nil
+    var repository: Repository! = nil
     var repositories: [SearchRepositoriesItem] = [SearchRepositoriesItem]()
     var repositoriesToDisplay: [SearchRepositoriesItem] = [SearchRepositoriesItem]()
     var repositoriesCount: Int = 0
@@ -23,7 +25,7 @@ class RepositoriesVC: UIViewController {
     
     func filterRepositories() {
         self.repositoriesToDisplay = self.repositories.filter({ (item) -> Bool in
-            return self.repositoryHelper.contains(item.htmlUrl!) == false && self.query.contains(item.htmlUrl!) == false
+            return readmeString.contains(item.htmlUrl!) == false && self.queries.contains(repoUrl: item.htmlUrl!) == false
         })
     }
     
@@ -36,7 +38,7 @@ class RepositoriesVC: UIViewController {
         
         self.tableView.es.addPullToRefresh {
             self.showHUD()
-            SearchAPI().searchRepositories(q: self.query.query) { (response, error) in
+            SearchAPI().searchRepositories(q: self.searchQuery) { (response, error) in
                 if let response = response {
                     self.repositoriesCount = response.totalCount!
                     self.repositories = response.items!
@@ -53,9 +55,13 @@ class RepositoriesVC: UIViewController {
         }
         
         self.tableView.es.addInfiniteScrolling {
+            if self.repositories.count >= self.repositoriesCount {
+                self.tableView.es.stopLoadingMore()
+                return
+            }
             self.showHUD()
             let pageNumber = Int(self.repositories.count / 100) + 1
-            SearchAPI().searchRepositories(q: self.query.query, page: pageNumber, per_page: 100, completion: { (response, error) in
+            SearchAPI().searchRepositories(q: self.searchQuery, page: pageNumber, per_page: 100, completion: { (response, error) in
                 if self.repositories.count >= self.repositoriesCount {
                     DispatchQueue.main.async {
                         self.tableView.es.stopLoadingMore()
@@ -63,7 +69,7 @@ class RepositoriesVC: UIViewController {
                     }
                 }
                 if let response = response {
-                    self.repositories.append(contentsOf: response.items!)
+                    self.repositories.append(contentsOf: response.items ?? [])
                     self.filterRepositories()
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -87,7 +93,7 @@ class RepositoriesVC: UIViewController {
     }
 }
 
-extension RepositoriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
+extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.repositoriesToDisplay.count
     }
@@ -107,7 +113,7 @@ extension RepositoriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath) as! RepositoryCell
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "SearchRepositoryCell", for: indexPath) as! SearchRepositoryCell
         let repository = self.repositoriesToDisplay[indexPath.row]
         cell.setupWih(repository)
         cell.selectionStyle = .none
@@ -121,7 +127,7 @@ extension RepositoriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTabl
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             let repo = self.repositoriesToDisplay[indexPath.row]
             do {
-                try self.query.append(repo.htmlUrl!)
+                try self.queries.append(repoUrl: repo.htmlUrl!)
                 self.filterRepositories()
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -134,14 +140,14 @@ extension RepositoriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTabl
         
         let addAction = SwipeAction(style: .default, title: "Add") { action, indexPath in
             let repo = self.repositoriesToDisplay[indexPath.row]
-            var issue = Issue(title: "New Suggested Repo \(repo.fullName!)")
+            var issue = Issue(title: repo.fullName!)
             issue.body = "[\(repo.name!)](\(repo.htmlUrl!)) - \(repo.descriptionField ?? "Need to find description"). \n Language - \(repo.language ?? "No Language")."
             self.showHUD()
             let authentication = TokenAuthentication(token: (self.authentication.token?.token)!)
-            IssuesAPI(authentication: authentication).createIssue(owner: "serhii-londar", repository: "open-source-mac-os-apps", issue: issue, completion: { (response, error) in
+            IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner!, repository: self.repository.name!, issue: issue, completion: { (response, error) in
                 do {
                     if let response = response {
-                        try self.query.append(repo.htmlUrl!)
+                        try self.queries.append(repoUrl: repo.htmlUrl!)
                         self.filterRepositories()
                         DispatchQueue.main.async {
                             self.tableView.reloadData()

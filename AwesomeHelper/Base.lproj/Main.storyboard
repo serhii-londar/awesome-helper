@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VlF-af-aBo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,13 +14,13 @@
         <!--Queries-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="QueriesVC" customModule="AwesomeHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QueriesVC" id="BYZ-38-t0r" customClass="QueriesVC" customModule="AwesomeHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CrC-nt-BBN">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QueryCell" rowHeight="96" id="UsV-sN-2Me" customClass="QueryCell" customModule="AwesomeHelper" customModuleProvider="target">
@@ -75,10 +75,84 @@
             </objects>
             <point key="canvasLocation" x="1172" y="64.31784107946028"/>
         </scene>
-        <!--RepositoriesVC-->
+        <!--Repositories-->
+        <scene sceneID="6Wd-Zd-44F">
+            <objects>
+                <viewController storyboardIdentifier="RepositoriesVC" id="JAN-dn-eW2" customClass="RepositoriesVC" customModule="AwesomeHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ykM-tB-4Hi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cJQ-lJ-3d0">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RepositoryCell" rowHeight="63" id="C87-6y-x7Z" customClass="RepositoryCell" customModule="AwesomeHelper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C87-6y-x7Z" id="Hbr-9r-IuW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="62.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANR-NQ-eoE">
+                                                    <rect key="frame" x="8" y="8" width="359" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmj-DX-bJ2">
+                                                    <rect key="frame" x="8" y="37" width="359" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cmj-DX-bJ2" firstAttribute="top" secondItem="ANR-NQ-eoE" secondAttribute="bottom" constant="8" id="6BH-QE-EkB"/>
+                                                <constraint firstItem="ANR-NQ-eoE" firstAttribute="top" secondItem="Hbr-9r-IuW" secondAttribute="top" constant="8" id="DXR-Ih-Lf5"/>
+                                                <constraint firstAttribute="bottom" secondItem="cmj-DX-bJ2" secondAttribute="bottom" constant="8" id="G7y-8H-i9C"/>
+                                                <constraint firstAttribute="trailing" secondItem="cmj-DX-bJ2" secondAttribute="trailing" constant="8" id="bRb-sm-X1H"/>
+                                                <constraint firstItem="ANR-NQ-eoE" firstAttribute="leading" secondItem="Hbr-9r-IuW" secondAttribute="leading" constant="8" id="eMm-Qr-YLZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="ANR-NQ-eoE" secondAttribute="trailing" constant="8" id="hF7-0W-9F0"/>
+                                                <constraint firstItem="cmj-DX-bJ2" firstAttribute="leading" secondItem="Hbr-9r-IuW" secondAttribute="leading" constant="8" id="taF-yq-f4r"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="ANR-NQ-eoE" id="2Cp-Ei-xl6"/>
+                                            <outlet property="urlLabel" destination="cmj-DX-bJ2" id="gAE-DC-OrI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cJQ-lJ-3d0" firstAttribute="top" secondItem="vyS-AT-oy7" secondAttribute="top" id="DOM-mM-IOt"/>
+                            <constraint firstItem="vyS-AT-oy7" firstAttribute="trailing" secondItem="cJQ-lJ-3d0" secondAttribute="trailing" id="buz-DJ-op2"/>
+                            <constraint firstItem="vyS-AT-oy7" firstAttribute="bottom" secondItem="cJQ-lJ-3d0" secondAttribute="bottom" id="kKD-RR-LM3"/>
+                            <constraint firstItem="cJQ-lJ-3d0" firstAttribute="leading" secondItem="vyS-AT-oy7" secondAttribute="leading" id="le7-nL-1H0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vyS-AT-oy7"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Repositories" id="Vmb-wr-WOV">
+                        <barButtonItem key="rightBarButtonItem" image="addIcon" id="lcs-rR-Sqx">
+                            <connections>
+                                <action selector="addRepositoryButtonPressed:" destination="JAN-dn-eW2" id="Wg1-a1-LGw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="cJQ-lJ-3d0" id="peo-NU-mwD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YkX-BF-7OO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1184.8" y="760.56971514242889"/>
+        </scene>
+        <!--Search RepositoriesVC-->
         <scene sceneID="Sqc-Sp-hVe">
             <objects>
-                <viewController storyboardIdentifier="RepositoriesVC" id="cuK-We-C6f" customClass="RepositoriesVC" customModule="AwesomeHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchRepositoriesVC" id="cuK-We-C6f" customClass="SearchRepositoriesVC" customModule="AwesomeHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pML-bB-fWu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,7 +161,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RepositoryCell" rowHeight="161" id="ZHR-9D-fMM" customClass="RepositoryCell" customModule="AwesomeHelper" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchRepositoryCell" rowHeight="161" id="ZHR-9D-fMM" customClass="SearchRepositoryCell" customModule="AwesomeHelper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="161"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZHR-9D-fMM" id="kOq-IQ-QOE">
@@ -276,12 +350,11 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7d-Sg-4Ll">
-                                <rect key="frame" x="127.5" y="144" width="120" height="40"/>
+                                <rect key="frame" x="151" y="144" width="73" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="mJ5-Ck-1mO"/>
                                     <constraint firstAttribute="height" constant="40" id="yop-B0-HIz"/>
                                 </constraints>
                                 <state key="normal" title="Add Query"/>
@@ -311,24 +384,6 @@
             <point key="canvasLocation" x="4279.1999999999998" y="65.217391304347828"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="B6J-cV-g4h">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VlF-af-aBo" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vMo-uf-VlW">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="y4t-22-3dl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9a8-EG-QMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="185" y="66"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="vhO-V5-SgE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OO5-pQ-11E" sceneMemberID="viewController">
@@ -345,6 +400,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nm9-f6-e2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3516" y="65"/>
+        </scene>
+        <!--Add Repository-->
+        <scene sceneID="cfb-9o-eXe">
+            <objects>
+                <viewController storyboardIdentifier="AddRepositoryVC" id="suV-gI-e1D" customClass="AddRepositoryVC" customModule="AwesomeHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vNt-eP-l2j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Owner" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D6Q-hb-fHl">
+                                <rect key="frame" x="20" y="40" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="a53-NX-8PB"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bNN-pa-Wdn">
+                                <rect key="frame" x="20" y="100" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="NKi-qR-0DO"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cU8-RP-QO0">
+                                <rect key="frame" x="127" y="160" width="120" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="vlz-BA-k11"/>
+                                    <constraint firstAttribute="height" constant="40" id="xuo-Oc-XKv"/>
+                                </constraints>
+                                <state key="normal" title="Add Repository"/>
+                                <connections>
+                                    <action selector="addRepositoryButtonPressed:" destination="suV-gI-e1D" eventType="touchUpInside" id="UEb-Vx-OxH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cU8-RP-QO0" firstAttribute="top" secondItem="bNN-pa-Wdn" secondAttribute="bottom" constant="20" id="2Sn-4W-L31"/>
+                            <constraint firstItem="cU8-RP-QO0" firstAttribute="centerX" secondItem="vNt-eP-l2j" secondAttribute="centerX" id="JiN-Gh-YWX"/>
+                            <constraint firstItem="m4p-Vk-u1S" firstAttribute="trailing" secondItem="bNN-pa-Wdn" secondAttribute="trailing" constant="20" id="M9q-4L-Akh"/>
+                            <constraint firstItem="D6Q-hb-fHl" firstAttribute="top" secondItem="m4p-Vk-u1S" secondAttribute="top" constant="20" id="ZiP-Hw-FWP"/>
+                            <constraint firstItem="bNN-pa-Wdn" firstAttribute="leading" secondItem="m4p-Vk-u1S" secondAttribute="leading" constant="20" id="Zji-7A-qam"/>
+                            <constraint firstItem="bNN-pa-Wdn" firstAttribute="top" secondItem="D6Q-hb-fHl" secondAttribute="bottom" constant="20" id="bP2-cg-djK"/>
+                            <constraint firstItem="m4p-Vk-u1S" firstAttribute="trailing" secondItem="D6Q-hb-fHl" secondAttribute="trailing" constant="20" id="rS8-fD-YqV"/>
+                            <constraint firstItem="D6Q-hb-fHl" firstAttribute="leading" secondItem="m4p-Vk-u1S" secondAttribute="leading" constant="20" id="sFs-ma-VUG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="m4p-Vk-u1S"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Repository" id="cK6-pL-dsL"/>
+                    <connections>
+                        <outlet property="addRepositoryButton" destination="cU8-RP-QO0" id="rPW-8a-MLj"/>
+                        <outlet property="repositoryNameTextField" destination="bNN-pa-Wdn" id="qv3-cR-gM1"/>
+                        <outlet property="repositoryOwnerTextField" destination="D6Q-hb-fHl" id="jLR-IH-bbj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="plf-Se-7ty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4277.6000000000004" y="798.35082458770626"/>
         </scene>
     </scenes>
     <resources>

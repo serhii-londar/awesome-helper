@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddQueryVC: UIViewController {
+class AddQueryVC: BaseVC {
     var queries: Queries!
     @IBOutlet weak var queryTextField: UITextField! = nil
     @IBOutlet weak var addQueryButton: UIButton! = nil

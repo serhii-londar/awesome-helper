@@ -10,69 +10,76 @@ import Foundation
 import FileKit
 
 class Queries {
-    var queries: [Query] = [Query]()
-    let queriesFolderName = "queries"
+    var queries: [String] = [String]()
+    
     let queriesFileName = "queries.txt"
+    let ignoredReposFileName = "ignored.txt"
     let repositoryName: String
-    var fileContent: String
+    var queriesFileContent: String
+    var ignoredFileContent: String
     var queriesFile: TextFile
+    var ignoredFile: TextFile
     
     init(repositoryName: String) throws {
         self.repositoryName = repositoryName
         
-        let queriesPath = Path.userDocuments + self.repositoryName + queriesFolderName
+        let queriesPath = Path.userDocuments + "Repositories" + self.repositoryName
         if queriesPath.exists == false {
             try queriesPath.createDirectory()
         }
-        let filePath = queriesPath + queriesFileName
-        queriesFile = TextFile(path: filePath)
+        let queriesFilePath = queriesPath + queriesFileName
+        queriesFile = TextFile(path: queriesFilePath)
         if queriesFile.exists == false {
             try queriesFile.create()
         }
-        self.fileContent = try queriesFile.read()
+        self.queriesFileContent = try queriesFile.read()
         
-        let queriesStrings: [String] = self.fileContent.components(separatedBy: "\n")
+        let queriesStrings: [String] = self.queriesFileContent.components(separatedBy: "\n")
         for queriesString in queriesStrings {
-            self.queries.append(try Query(query: queriesString, repositoryName: self.repositoryName))
+            self.queries.append(queriesString)
         }
+        
+        let ignoredFilePath = queriesPath + ignoredReposFileName
+        ignoredFile = TextFile(path: ignoredFilePath)
+        if ignoredFile.exists == false {
+            try ignoredFile.create()
+        }
+        self.ignoredFileContent = try ignoredFile.read()
     }
     
-    func addQuery(_ queryString: String) throws -> Query {
-        self.fileContent.append(queryString + "\n")
-        try queriesFile.write(self.fileContent, atomically: true)
-        let query = try Query(query: queryString, repositoryName: self.repositoryName)
-        self.queries.append(query)
-        return query
+    func addQuery(_ queryString: String) throws -> String {
+        self.queriesFileContent.append(queryString + "\n")
+        try queriesFile.write(self.queriesFileContent, atomically: true)
+        return queryString
     }
     
     func removeQuery(_ queryString: String) throws {
-        if let range = self.fileContent.range(of: queryString) {
-            self.fileContent.removeSubrange(range)
+        if let range = self.queriesFileContent.range(of: queryString) {
+            self.queriesFileContent.removeSubrange(range)
         }
-        
         if let index = self.queries.index(where: { (q) -> Bool in
-            return q.query == queryString
+            return q == queryString
         }) {
             self.queries.remove(at: index)
         }
-        try queriesFile.write(self.fileContent, atomically: true)
-        let query = try Query(query: queryString, repositoryName: self.repositoryName)
-        self.queries.append(query)
+        try queriesFile.write(self.queriesFileContent, atomically: true)
     }
     
-    func getQuery(_ queryString: String) -> Query? {
-        if let index = self.queries.index(where: { (q) -> Bool in
-            return q.query == queryString
-        }) {
-            return self.queries[index]
-        }
-        return nil
-    }
-    
-    func contains(_ queryString: String) -> Bool {
-        if self.fileContent.range(of: queryString) != nil {
+    func contains(queryString: String) -> Bool {
+        if self.queriesFileContent.range(of: queryString) != nil {
             return true
         }
         return false
+    }
+    
+    
+    //Work with ignored
+    func append(repoUrl: String) throws {
+        self.ignoredFileContent.append(repoUrl + "\n")
+        try self.ignoredFile.write(self.ignoredFileContent, atomically: true)
+    }
+    
+    func contains(repoUrl: String) -> Bool {
+        return self.ignoredFileContent.contains(repoUrl)
     }
 }

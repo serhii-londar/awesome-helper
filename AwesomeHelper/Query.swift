@@ -12,7 +12,6 @@ import FileKit
 class Query {
     var query: String
     var repositoryName: String
-    let queriesFolderName = "queries"
     var queriesPath: Path
     var textFile: TextFile
     var fileContent: String
@@ -20,7 +19,7 @@ class Query {
     init(query: String, repositoryName: String) throws {
         self.query = query
         self.repositoryName = repositoryName
-        self.queriesPath = Path.userDocuments + self.repositoryName + queriesFolderName
+        self.queriesPath = Path.userDocuments + "Repositories" + self.repositoryName
         if queriesPath.exists == false {
             try queriesPath.createDirectory()
         }

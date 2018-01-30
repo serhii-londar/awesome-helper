@@ -11,4 +11,7 @@ target 'AwesomeHelper' do
   pod 'SwipeCellKit'
   pod 'Kingfisher'
   pod 'NSDate+TimeAgo'
+  pod 'AppFolder'
+  pod 'FileKit'
+  pod 'SwiftGen'
 end
