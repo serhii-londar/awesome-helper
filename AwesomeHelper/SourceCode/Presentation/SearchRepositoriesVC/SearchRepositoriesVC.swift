@@ -27,9 +27,11 @@ class SearchRepositoriesVC: BaseVC {
     
     func filterRepositories() {
         self.repositoriesToDisplay = self.repositories.filter({ (item) -> Bool in
-            let existInIgnored = self.repository.ignoredRepos.filter("url == \"\(item.htmlUrl!)\"").count > 0
-            let existInReviewed = self.repository.aprovedRepos.filter("url == \"\(item.htmlUrl!)\"").count > 0
-            return readmeString.contains(item.htmlUrl!) == false && (existInIgnored == false || existInReviewed == false)
+            let ignored = self.repository.ignoredRepos.filter("url == \"\(item.htmlUrl!)\"")
+            let existInIgnored = ignored.count > 0
+            let reviewed = self.repository.aprovedRepos.filter("url == \"\(item.htmlUrl!)\"")
+            let existInReviewed = reviewed.count > 0
+            return readmeString.contains(item.htmlUrl!) == false && existInIgnored == false && existInReviewed == false
         })
     }
     
