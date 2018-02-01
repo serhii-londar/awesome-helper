@@ -8,6 +8,7 @@
 
 import UIKit
 import GithubAPI
+import RealmSwift
 
 class AddRepositoryVC: BaseVC {
     @IBOutlet weak var repositoryOwnerTextField: UITextField! = nil
@@ -38,10 +39,13 @@ class AddRepositoryVC: BaseVC {
     
     func addRepository(_ repo: RepositoryResponse) {
         do {
-            var repositories = try Repositories.load()
-            let repository = try Repository(name: repositoryNameTextField.text!, owner: repositoryOwnerTextField.text!, url: repo.url!)
-            repositories.repositories?.append(repository)
-            try repositories.save()
+            let repository = Repository()
+            repository.name = repositoryNameTextField.text!
+            repository.owner = repositoryOwnerTextField.text!
+            repository.url = repo.htmlUrl!
+            try Realm.default.write {
+                Realm.default.add(repository)
+            }
             self.navigationController?.popViewController(animated: true)
         } catch {
             self.showErrorAlert(error.localizedDescription)

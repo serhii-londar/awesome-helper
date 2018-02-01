@@ -11,12 +11,14 @@ import UIKit
 import GithubAPI
 import ESPullToRefresh
 import SwipeCellKit
+import RealmSwift
+import Font_Awesome_Swift
 
 class SearchRepositoriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
+    @IBOutlet weak var queryLabel: UILabel! = nil
     var readmeString: String! = nil
-    var searchQuery: String! = nil
-    var queries: Queries! = nil
+    var searchQuery: Query! = nil
     var repository: Repository! = nil
     var repositories: [SearchRepositoriesItem] = [SearchRepositoriesItem]()
     var repositoriesToDisplay: [SearchRepositoriesItem] = [SearchRepositoriesItem]()
@@ -25,25 +27,29 @@ class SearchRepositoriesVC: BaseVC {
     
     func filterRepositories() {
         self.repositoriesToDisplay = self.repositories.filter({ (item) -> Bool in
-            return readmeString.contains(item.htmlUrl!) == false && self.queries.contains(repoUrl: item.htmlUrl!) == false
+            let existInIgnored = self.repository.ignoredRepos.filter("url == \"\(item.htmlUrl!)\"").count > 0
+            let existInReviewed = self.repository.aprovedRepos.filter("url == \"\(item.htmlUrl!)\"").count > 0
+            return readmeString.contains(item.htmlUrl!) == false && (existInIgnored == false || existInReviewed == false)
         })
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = searchQuery.query
+        queryLabel.text = searchQuery.query
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "QueryCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 100
-        
+        self.tableView.tableFooterView = UIView()
         self.tableView.es.addPullToRefresh {
             self.showHUD()
-            SearchAPI().searchRepositories(q: self.searchQuery) { (response, error) in
+            SearchAPI().searchRepositories(q: self.searchQuery.query) { (response, error) in
                 if let response = response {
-                    self.repositoriesCount = response.totalCount!
-                    self.repositories = response.items!
-                    self.filterRepositories()
                     DispatchQueue.main.async {
+                        self.repositoriesCount = response.totalCount!
+                        self.repositories = response.items!
+                        self.filterRepositories()
                         self.tableView.reloadData()
                     }
                 }
@@ -61,7 +67,7 @@ class SearchRepositoriesVC: BaseVC {
             }
             self.showHUD()
             let pageNumber = Int(self.repositories.count / 100) + 1
-            SearchAPI().searchRepositories(q: self.searchQuery, page: pageNumber, per_page: 100, completion: { (response, error) in
+            SearchAPI().searchRepositories(q: self.searchQuery.query, page: pageNumber, per_page: 100, completion: { (response, error) in
                 if self.repositories.count >= self.repositoriesCount {
                     DispatchQueue.main.async {
                         self.tableView.es.stopLoadingMore()
@@ -69,9 +75,9 @@ class SearchRepositoriesVC: BaseVC {
                     }
                 }
                 if let response = response {
-                    self.repositories.append(contentsOf: response.items ?? [])
-                    self.filterRepositories()
                     DispatchQueue.main.async {
+                        self.repositories.append(contentsOf: response.items ?? [])
+                        self.filterRepositories()
                         self.tableView.reloadData()
                     }
                 }
@@ -126,17 +132,24 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             let repo = self.repositoriesToDisplay[indexPath.row]
-            do {
-                try self.queries.append(repoUrl: repo.htmlUrl!)
-                self.filterRepositories()
-                DispatchQueue.main.async {
+            let reviewedRepo = ReviewedRepository()
+            reviewedRepo.name = repo.name!
+            reviewedRepo.owner = repo.owner?.login ?? ""
+            reviewedRepo.url = repo.htmlUrl!
+            DispatchQueue.main.async {
+                do {
+                    try Realm.default.write {
+                        Realm.default.add(reviewedRepo)
+                        self.repository.ignoredRepos.append(reviewedRepo)
+                    }
+                    self.filterRepositories()
                     self.tableView.reloadData()
+                } catch {
+                    print(error)
                 }
-            } catch {
-                print(error)
             }
         }
-        deleteAction.image = UIImage(named: "deleteIcon")
+        deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
         
         let addAction = SwipeAction(style: .default, title: "Add") { action, indexPath in
             let repo = self.repositoriesToDisplay[indexPath.row]
@@ -144,24 +157,31 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
             issue.body = "[\(repo.name!)](\(repo.htmlUrl!)) - \(repo.descriptionField ?? "Need to find description"). \n Language - \(repo.language ?? "No Language")."
             self.showHUD()
             let authentication = TokenAuthentication(token: (self.authentication.token?.token)!)
-            IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner!, repository: self.repository.name!, issue: issue, completion: { (response, error) in
-                do {
-                    if let response = response {
-                        try self.queries.append(repoUrl: repo.htmlUrl!)
-                        self.filterRepositories()
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
+            IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner, repository: self.repository.name, issue: issue, completion: { (response, error) in
+                if let response = response {
+                    DispatchQueue.main.async {
+                        let reviewedRepository = ReviewedRepository()
+                        reviewedRepository.name = repo.name!
+                        reviewedRepository.owner = repo.owner?.login ?? ""
+                        reviewedRepository.url = repo.htmlUrl!
+                        do {
+                            try Realm.default.write {
+                                Realm.default.add(reviewedRepository)
+                                self.repository.aprovedRepos.append(reviewedRepository)
+                            }
+                        } catch {
+                            self.showErrorAlert(error.localizedDescription)
                         }
-                    } else {
-                        self.showErrorAlert(error?.localizedDescription ?? "Unrecognized Error!")
+                        self.filterRepositories()
+                        self.tableView.reloadData()
                     }
-                } catch {
-                    print(error)
+                } else {
+                    self.showErrorAlert(error?.localizedDescription ?? "Unrecognized Error!")
                 }
                 self.hideHUD()
             })
         }
-        addAction.image = UIImage(named: "addIcon")
+        addAction.image = UIImage.init(icon: FAType.FAPlusCircle, size: CGSize(width: 35, height: 35))
         
         
         return [addAction, deleteAction]

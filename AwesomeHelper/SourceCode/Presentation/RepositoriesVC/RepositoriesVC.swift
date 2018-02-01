@@ -9,19 +9,20 @@
 import UIKit
 import GithubAPI
 import SwipeCellKit
+import RealmSwift
+import Font_Awesome_Swift
 
 class RepositoriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
-    var repositories: Repositories! = nil
+    var repositories: Results<Repository>! = nil
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.showHUD()
-        do {
-            self.repositories = try Repositories.load()
-        } catch {
-            self.repositories = Repositories()
-        }
+        self.repositories = Realm.default.objects(Repository.self)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.tableFooterView = UIView()
         self.tableView.reloadData()
         self.hideHUD()
     }
@@ -30,6 +31,7 @@ class RepositoriesVC: BaseVC {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(icon: FAType.FAPlusCircle, size: CGSize(width: 35, height: 35)), style: .plain, target: self, action: #selector(addRepositoryButtonPressed(_:)))
     }
     
     @IBAction func addRepositoryButtonPressed(_ sender: AnyObject) {
@@ -43,31 +45,32 @@ extension RepositoriesVC: UITableViewDelegate, UITableViewDataSource, SwipeTable
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            let repo = self.repositories.repositories![indexPath.row]
-            do {
-                try self.repositories.remove(repo)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+            DispatchQueue.main.async {
+                let repo = self.repositories[indexPath.row]
+                
+                try? Realm.default.write {
+                    Realm.default.delete(repo)
                 }
-            } catch {
-                print(error)
+                
+                self.repositories = Realm.default.objects(Repository.self)
+                self.tableView.reloadData()
             }
         }
-        deleteAction.image = UIImage(named: "deleteIcon")
+        deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
         return [deleteAction]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (repositories.repositories?.count)!
+        return repositories.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return -1
+        return 80
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath) as! RepositoryCell
-        let repository = self.repositories.repositories![indexPath.row]
+        let repository = self.repositories[indexPath.row]
         cell.setupWith(repository)
         cell.selectionStyle = .none
         cell.delegate = self
@@ -75,13 +78,12 @@ extension RepositoriesVC: UITableViewDelegate, UITableViewDataSource, SwipeTable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repo = self.repositories.repositories![indexPath.row]
+        let repo = self.repositories[indexPath.row]
         self.showHUD()
-        RepositoriesContentsAPI().getReadme(owner: repo.owner!, repo: repo.name!) { (response, error) in
+        RepositoriesContentsAPI().getReadme(owner: repo.owner, repo: repo.name) { (response, error) in
             DispatchQueue.main.async {
                 if let response = response {
                     let queriesVC = Storyboards.Main.instantiateQueriesVC()
-                    queriesVC.queries = try! Queries(repositoryName: repo.name!)
                     queriesVC.readmeString = response.content?.fromBase64()
                     queriesVC.repository = repo
                     self.navigationController?.pushViewController(queriesVC, animated: true)

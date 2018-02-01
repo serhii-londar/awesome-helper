@@ -21,7 +21,7 @@ class QueryCell: SwipeTableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setupWith(_ query: String) {
-        self.queryName.text = query
+    func setupWith(_ query: Query) {
+        self.queryName.text = query.query
     }
 }

@@ -1,39 +1,47 @@
 PODS:
-  - AppFolder (0.1.1)
   - BaseAPI (0.1.2)
   - ESPullToRefresh (2.7)
   - FileKit (5.0.0)
+  - Font-Awesome-Swift (1.7.2)
   - GithubAPI (0.0.4):
     - BaseAPI
   - Kingfisher (4.6.1)
   - NSDate+TimeAgo (1.0.6)
+  - Realm (3.1.0):
+    - Realm/Headers (= 3.1.0)
+  - Realm/Headers (3.1.0)
+  - RealmSwift (3.1.0):
+    - Realm (= 3.1.0)
   - SVProgressHUD (2.2.2)
   - SwiftGen (5.2.1)
   - SwipeCellKit (2.0.1)
 
 DEPENDENCIES:
-  - AppFolder
   - ESPullToRefresh
   - FileKit
+  - Font-Awesome-Swift
   - GithubAPI
   - Kingfisher
   - NSDate+TimeAgo
+  - RealmSwift
   - SVProgressHUD
   - SwiftGen
   - SwipeCellKit
 
 SPEC CHECKSUMS:
-  AppFolder: 9a98b1cc69bf9b3345b8783e80dcac176d45c76a
   BaseAPI: e234e06c832a85154f34f09d6b626364059b1638
   ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
   FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
+  Font-Awesome-Swift: 83ab9db365379ee6025167cec67bdc5d3226a811
   GithubAPI: f65be5a17f2cb5324c4b0fc418f1ab3e3952fcb7
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   NSDate+TimeAgo: 35601c619b2d59290055e4fe76e61d97677a2360
+  Realm: 09513d7c054678d65cd02ce09871f805b0d758ac
+  RealmSwift: e868fee9b10e5490ad94b6b6ecd9027944da1824
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SwiftGen: 444b4c467e512a4812b8a800d731643fd265139e
   SwipeCellKit: 76888d93d1843dc568fdf38fff21b15dbbcf6b28
 
-PODFILE CHECKSUM: c5cfc34d52792181973ccbf9c819179da4e12c1f
+PODFILE CHECKSUM: c6693fd9ffc9190db1f714b88860f0c37e601357
 
 COCOAPODS: 1.4.0

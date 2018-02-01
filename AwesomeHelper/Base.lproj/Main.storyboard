@@ -100,7 +100,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmj-DX-bJ2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmj-DX-bJ2">
                                                     <rect key="frame" x="8" y="37" width="359" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -158,7 +158,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3ij-Fy-pMl">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="57.5" width="375" height="609.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchRepositoryCell" rowHeight="161" id="ZHR-9D-fMM" customClass="SearchRepositoryCell" customModule="AwesomeHelper" customModuleProvider="target">
@@ -283,23 +283,33 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYf-rC-vyS">
+                                <rect key="frame" x="8" y="28" width="359" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="h3n-JU-XqE" firstAttribute="bottom" secondItem="3ij-Fy-pMl" secondAttribute="bottom" id="EOk-eR-f9Y"/>
-                            <constraint firstItem="3ij-Fy-pMl" firstAttribute="top" secondItem="h3n-JU-XqE" secondAttribute="top" id="Xd6-0o-vD3"/>
+                            <constraint firstItem="3ij-Fy-pMl" firstAttribute="top" secondItem="rYf-rC-vyS" secondAttribute="bottom" constant="8" id="LTP-vW-0Ze"/>
+                            <constraint firstItem="rYf-rC-vyS" firstAttribute="leading" secondItem="h3n-JU-XqE" secondAttribute="leading" constant="8" id="Tca-v9-lF8"/>
                             <constraint firstItem="3ij-Fy-pMl" firstAttribute="leading" secondItem="h3n-JU-XqE" secondAttribute="leading" id="vXj-R2-UWF"/>
                             <constraint firstItem="h3n-JU-XqE" firstAttribute="trailing" secondItem="3ij-Fy-pMl" secondAttribute="trailing" id="w1e-KN-60G"/>
+                            <constraint firstItem="rYf-rC-vyS" firstAttribute="top" secondItem="h3n-JU-XqE" secondAttribute="top" constant="8" id="zqH-Yo-167"/>
+                            <constraint firstItem="h3n-JU-XqE" firstAttribute="trailing" secondItem="rYf-rC-vyS" secondAttribute="trailing" constant="8" id="zqT-0H-Tga"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h3n-JU-XqE"/>
                     </view>
                     <connections>
+                        <outlet property="queryLabel" destination="rYf-rC-vyS" id="L6d-Ms-b4Y"/>
                         <outlet property="tableView" destination="3ij-Fy-pMl" id="I5X-xj-Bun"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GvI-GJ-vom" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1945" y="64"/>
+            <point key="canvasLocation" x="1944.8" y="63.418290854572717"/>
         </scene>
         <!--WebVC-->
         <scene sceneID="I8C-HA-Rbx">
