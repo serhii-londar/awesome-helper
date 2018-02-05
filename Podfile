@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'AwesomeHelper' do
   use_frameworks!
@@ -9,8 +9,8 @@ target 'AwesomeHelper' do
   pod 'SwipeCellKit'
   pod 'Kingfisher'
   pod 'NSDate+TimeAgo'
-  pod 'FileKit'
   pod 'SwiftGen'
   pod 'RealmSwift'
   pod 'Font-Awesome-Swift'
+  pod 'Salada', :git => 'https://github.com/1amageek/Salada.git'
 end

@@ -27,11 +27,12 @@ class SearchRepositoriesVC: BaseVC {
     
     func filterRepositories() {
         self.repositoriesToDisplay = self.repositories.filter({ (item) -> Bool in
-            let ignored = self.repository.ignoredRepos.filter("url == \"\(item.htmlUrl!)\"")
-            let existInIgnored = ignored.count > 0
-            let reviewed = self.repository.aprovedRepos.filter("url == \"\(item.htmlUrl!)\"")
-            let existInReviewed = reviewed.count > 0
-            return readmeString.contains(item.htmlUrl!) == false && existInIgnored == false && existInReviewed == false
+//            let ignored = self.repository.ignoredRepos.filter("url == \"\(item.htmlUrl!)\"")
+//            let existInIgnored = ignored.count > 0
+//            let reviewed = self.repository.aprovedRepos.filter("url == \"\(item.htmlUrl!)\"")
+//            let existInReviewed = reviewed.count > 0
+//            return readmeString.contains(item.htmlUrl!) == false && existInIgnored == false && existInReviewed == false
+            return false
         })
     }
     
@@ -46,7 +47,7 @@ class SearchRepositoriesVC: BaseVC {
         self.tableView.tableFooterView = UIView()
         self.tableView.es.addPullToRefresh {
             self.showHUD()
-            SearchAPI().searchRepositories(q: self.searchQuery.query) { (response, error) in
+            SearchAPI().searchRepositories(q: self.searchQuery.query!) { (response, error) in
                 if let response = response {
                     DispatchQueue.main.async {
                         self.repositoriesCount = response.totalCount!
@@ -69,7 +70,7 @@ class SearchRepositoriesVC: BaseVC {
             }
             self.showHUD()
             let pageNumber = Int(self.repositories.count / 100) + 1
-            SearchAPI().searchRepositories(q: self.searchQuery.query, page: pageNumber, per_page: 100, completion: { (response, error) in
+            SearchAPI().searchRepositories(q: self.searchQuery.query!, page: pageNumber, per_page: 100, completion: { (response, error) in
                 if self.repositories.count >= self.repositoriesCount {
                     DispatchQueue.main.async {
                         self.tableView.es.stopLoadingMore()
@@ -140,10 +141,10 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
             reviewedRepo.url = repo.htmlUrl!
             DispatchQueue.main.async {
                 do {
-                    try Realm.default.write {
-                        Realm.default.add(reviewedRepo)
-                        self.repository.ignoredRepos.append(reviewedRepo)
-                    }
+//                    try Realm.default.write {
+//                        Realm.default.add(reviewedRepo)
+//                        self.repository.ignoredRepos.append(reviewedRepo)
+//                    }
                     self.filterRepositories()
                     self.tableView.reloadData()
                 } catch {
@@ -159,21 +160,21 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
             issue.body = "[\(repo.name!)](\(repo.htmlUrl!)) - \(repo.descriptionField ?? "Need to find description"). \n Language - \(repo.language ?? "No Language")."
             self.showHUD()
             let authentication = TokenAuthentication(token: (self.authentication.token?.token)!)
-            IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner, repository: self.repository.name, issue: issue, completion: { (response, error) in
+            IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner!, repository: self.repository.name!, issue: issue, completion: { (response, error) in
                 if let response = response {
                     DispatchQueue.main.async {
                         let reviewedRepository = ReviewedRepository()
                         reviewedRepository.name = repo.name!
                         reviewedRepository.owner = repo.owner?.login ?? ""
                         reviewedRepository.url = repo.htmlUrl!
-                        do {
-                            try Realm.default.write {
-                                Realm.default.add(reviewedRepository)
-                                self.repository.aprovedRepos.append(reviewedRepository)
-                            }
-                        } catch {
-                            self.showErrorAlert(error.localizedDescription)
-                        }
+//                        do {
+//                            try Realm.default.write {
+//                                Realm.default.add(reviewedRepository)
+//                                self.repository.aprovedRepos.append(reviewedRepository)
+//                            }
+//                        } catch {
+//                            self.showErrorAlert(error.localizedDescription)
+//                        }
                         self.filterRepositories()
                         self.tableView.reloadData()
                     }

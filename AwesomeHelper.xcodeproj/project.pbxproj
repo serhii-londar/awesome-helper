@@ -29,8 +29,10 @@
 		9299DD09200D5ABC0083BF1F /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD05200D5ABC0083BF1F /* Credentials.swift */; };
 		9299DD0C200D5DBC0083BF1F /* AddQueryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD0B200D5DBC0083BF1F /* AddQueryVC.swift */; };
 		9299DD0E200D627B0083BF1F /* QueryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD0D200D627B0083BF1F /* QueryCell.swift */; };
+		92A2E49A20253DBC00463F64 /* Classess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A2E49920253DBC00463F64 /* Classess.swift */; };
 		92E36D8C201F940E00E45B3D /* AddRepositoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */; };
 		92E36D8F201FA06200E45B3D /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E36D8E201FA06200E45B3D /* Storyboards.swift */; };
+		92E45FD52025305B00302435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E45FD42025305B00302435 /* GoogleService-Info.plist */; };
 		92E7D923200D1E920023F4F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D922200D1E920023F4F6 /* ViewController.swift */; };
 		92E7D926200D318A0023F4F6 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D925200D318A0023F4F6 /* WebVC.swift */; };
 		92E7D928200D363C0023F4F6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E7D927200D363C0023F4F6 /* WebKit.framework */; };
@@ -77,8 +79,10 @@
 		9299DD05200D5ABC0083BF1F /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		9299DD0B200D5DBC0083BF1F /* AddQueryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQueryVC.swift; sourceTree = "<group>"; };
 		9299DD0D200D627B0083BF1F /* QueryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryCell.swift; sourceTree = "<group>"; };
+		92A2E49920253DBC00463F64 /* Classess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classess.swift; sourceTree = "<group>"; };
 		92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepositoryVC.swift; sourceTree = "<group>"; };
 		92E36D8E201FA06200E45B3D /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		92E45FD42025305B00302435 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92E7D922200D1E920023F4F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		92E7D925200D318A0023F4F6 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		92E7D927200D363C0023F4F6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -156,6 +160,7 @@
 				926309262007EFA100CD2329 /* Assets.xcassets */,
 				926309282007EFA100CD2329 /* LaunchScreen.storyboard */,
 				9263092B2007EFA100CD2329 /* Info.plist */,
+				92E45FD42025305B00302435 /* GoogleService-Info.plist */,
 			);
 			path = AwesomeHelper;
 			sourceTree = "<group>";
@@ -231,6 +236,14 @@
 			path = AddQueryVC;
 			sourceTree = "<group>";
 		};
+		92A2E49820253DAC00463F64 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				92A2E49920253DBC00463F64 /* Classess.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		92E36D8A201F93FF00E45B3D /* AddRepositoryVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +255,7 @@
 		92E36D90201FA28B00E45B3D /* SourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				92A2E49820253DAC00463F64 /* Firebase */,
 				92F711862021451900224726 /* Database */,
 				924740C3201FAFC800A7F024 /* BaseClasses */,
 				92E36D96201FA2C900E45B3D /* Helpers */,
@@ -366,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E45FD52025305B00302435 /* GoogleService-Info.plist in Resources */,
 				9263092A2007EFA100CD2329 /* LaunchScreen.storyboard in Resources */,
 				926309272007EFA100CD2329 /* Assets.xcassets in Resources */,
 				9299DD00200D5AA80083BF1F /* credentials.json in Resources */,
@@ -385,29 +400,35 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BaseAPI/BaseAPI.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/FileKit/FileKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GithubAPI/GithubAPI.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NSDate+TimeAgo/NSDate_TimeAgo.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseAPI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FileKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GithubAPI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDate_TimeAgo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -479,6 +500,7 @@
 				92E7D926200D318A0023F4F6 /* WebVC.swift in Sources */,
 				92F711882021452400224726 /* Realm.swift in Sources */,
 				921602102023B2D200AC1E8B /* Classes.swift in Sources */,
+				92A2E49A20253DBC00463F64 /* Classess.swift in Sources */,
 				9299DD07200D5ABC0083BF1F /* Basic.swift in Sources */,
 				926309222007EFA100CD2329 /* QueriesVC.swift in Sources */,
 				924740C9201FB1D300A7F024 /* RepositoryCell.swift in Sources */,
@@ -561,7 +583,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -612,7 +634,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -629,11 +651,12 @@
 				DEVELOPMENT_TEAM = 22AFPHX3AU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AwesomeHelper/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.slon.AwesomeHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.slonfamily.awesomehelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -649,11 +672,12 @@
 				DEVELOPMENT_TEAM = 22AFPHX3AU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AwesomeHelper/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.slon.AwesomeHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.slonfamily.awesomehelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

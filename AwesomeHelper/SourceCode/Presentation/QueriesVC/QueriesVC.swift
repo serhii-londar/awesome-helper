@@ -15,6 +15,7 @@ class QueriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
     var readmeString: String! = nil
     var repository: Repository! = nil
+    var queries: [Query] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,15 @@ class QueriesVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        self.refreshData()
+    }
+    
+    func refreshData() {
+        self.repository.queries.ref
+        Query.observeSingle(.value) { queries in
+            self.queries = queries
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func addQueryButtonPressed(_ sender: Any) {
@@ -44,18 +53,9 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             let query = self.repository.queries[indexPath.row]
-            do {
-                try Realm.default.write {
-                    if let index = self.repository.queries.index(of: query) {
-                        self.repository.queries.remove(at: index)
-                    }
-                }
-                self.tableView.reloadData()
-                
-            } catch {
-                print(error)
-                self.showErrorAlert(error.localizedDescription)
-            }
+            query.remove()
+            self.repository.queries.remove(query)
+            self.tableView.reloadData()
         }
         deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
         
@@ -72,20 +72,20 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.repository.queries.count
+        return self.queries.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repositoryVC = Storyboards.Main.instantiateSearchRepositoriesVC()
         repositoryVC.readmeString = readmeString
-        repositoryVC.searchQuery = self.repository.queries[indexPath.row]
+        repositoryVC.searchQuery = self.queries[indexPath.row]
         repositoryVC.repository = self.repository
         self.navigationController?.pushViewController(repositoryVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "QueryCell", for: indexPath) as! QueryCell
-        cell.setupWith(self.repository.queries[indexPath.row])
+        cell.setupWith(self.queries[indexPath.row])
         cell.delegate = self
         return cell
     }

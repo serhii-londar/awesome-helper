@@ -8,6 +8,9 @@
 
 import UIKit
 import RealmSwift
+import FirebaseCore
+import FirebaseDatabase
+import Salada
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,14 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        FirebaseApp.configure()
+        Salada.SaladaApp.configure()
         
+//        let a = FRepository.observe(.value, block: { (repositories) in
+//
+//        })
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let rootVC = Storyboards.Main.instantiateRepositoriesVC()
         self.window?.rootViewController = BaseNC(rootViewController: rootVC)
         self.window?.makeKeyAndVisible()
-        
         return true
     }
 

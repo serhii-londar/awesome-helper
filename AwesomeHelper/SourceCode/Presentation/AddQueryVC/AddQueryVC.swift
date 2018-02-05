@@ -39,16 +39,15 @@ class AddQueryVC: BaseVC {
         if let queryText = self.queryTextField.text {
             do {
                 if mode == .create {
-                    try Realm.default.write {
-                        query?.query = queryText
-                        query?.repository = repository
-                        Realm.default.add(query!)
-                        repository.queries.append(query!)
-                    }
+                    query?.query = queryText
+                    query?.repository = repository
+                    self.repository.queries.insert(self.query!)
+//                    self.repository.save()
+//                    query?.save({ (ref, error) in
+//                    })
                 } else if mode == .edit {
-                    try Realm.default.write {
-                        query?.query = queryText
-                    }
+                    query?.query = queryText
+                    query?.save()
                 }
                 self.navigationController?.popViewController(animated: true)
             } catch {

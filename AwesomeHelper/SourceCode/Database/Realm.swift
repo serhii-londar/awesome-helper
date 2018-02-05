@@ -11,15 +11,17 @@ import RealmSwift
 
 extension Realm {
     static var `default`: Realm {
-        return try! Realm()
+        var config = Realm.Configuration()
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
+//        config.syncConfiguration = SyncConfiguration(user: SyncUser.current!, realmURL: URL(string: "realm://51.15.76.253:9080/~/userRealm")!)
+        return try! Realm(configuration: config)
     }
     
     static func initialize() {
         var config = Realm.Configuration()
-        
         // Use the default directory, but replace the filename with the username
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
-        
+//        config.syncConfiguration = SyncConfiguration(user: SyncUser.current!, realmURL: URL(string: "realm://51.15.76.253:9080/~/userRealm")!)
         // Set this as the configuration used for the default Realm
         Realm.Configuration.defaultConfiguration = config
     }

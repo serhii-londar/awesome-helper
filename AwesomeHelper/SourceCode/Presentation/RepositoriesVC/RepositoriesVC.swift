@@ -11,27 +11,33 @@ import GithubAPI
 import SwipeCellKit
 import RealmSwift
 import Font_Awesome_Swift
+import Salada
 
 class RepositoriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
-    var repositories: Results<Repository>! = nil
+    var repositories: [Repository] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.showHUD()
-        self.repositories = Realm.default.objects(Repository.self)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
         self.tableView.reloadData()
-        self.hideHUD()
+        self.refreshData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(icon: FAType.FAPlusCircle, size: CGSize(width: 35, height: 35)), style: .plain, target: self, action: #selector(addRepositoryButtonPressed(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(icon: FAType.FAPlusCircle, size: CGSize(width: 35, height: 35)), style: .plain, target: self, action: #selector(self.addRepositoryButtonPressed(_:)))
+    }
+    
+    func refreshData() {
+        self.showHUD()
+        Repository.observeSingle(.value) { (repositories) in
+            self.hideHUD()
+            self.repositories = repositories
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func addRepositoryButtonPressed(_ sender: AnyObject) {
@@ -47,13 +53,8 @@ extension RepositoriesVC: UITableViewDelegate, UITableViewDataSource, SwipeTable
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             DispatchQueue.main.async {
                 let repo = self.repositories[indexPath.row]
-                
-                try? Realm.default.write {
-                    Realm.default.delete(repo)
-                }
-                
-                self.repositories = Realm.default.objects(Repository.self)
-                self.tableView.reloadData()
+                repo.remove()
+                self.refreshData()
             }
         }
         deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
@@ -79,8 +80,9 @@ extension RepositoriesVC: UITableViewDelegate, UITableViewDataSource, SwipeTable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repo = self.repositories[indexPath.row]
+        print(repo.queries.values)
         self.showHUD()
-        RepositoriesContentsAPI().getReadme(owner: repo.owner, repo: repo.name) { (response, error) in
+        RepositoriesContentsAPI().getReadme(owner: repo.owner!, repo: repo.name!) { (response, error) in
             DispatchQueue.main.async {
                 if let response = response {
                     let queriesVC = Storyboards.Main.instantiateQueriesVC()
