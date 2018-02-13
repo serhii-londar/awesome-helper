@@ -39,12 +39,15 @@ class AddQueryVC: BaseVC {
             if mode == .create {
                 query?.query = queryText
                 query?.repository = repository.key
+                self.showHUD()
                 query?.save(completion: { (error) in
                     if let error = error {
+                        self.hideHUD()
                         self.showErrorAlert(error.localizedDescription)
                     } else {
                         self.repository.queries.insert((self.query?.key)!, at: 0)
                         self.repository.update (completion: { (error) in
+                            self.hideHUD()
                             if let error = error {
                                 self.showErrorAlert(error.localizedDescription)
                             } else {
@@ -55,7 +58,9 @@ class AddQueryVC: BaseVC {
                 })
             } else if mode == .edit {
                 query?.query = queryText
+                self.showHUD()
                 query?.update(completion: { (error) in
+                    self.hideHUD()
                     if let error = error {
                         self.showErrorAlert(error.localizedDescription)
                     } else {
