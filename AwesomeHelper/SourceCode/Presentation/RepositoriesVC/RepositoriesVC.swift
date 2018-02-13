@@ -85,7 +85,7 @@ extension RepositoriesVC: UITableViewDelegate, UITableViewDataSource, SwipeTable
             DispatchQueue.main.async {
                 if let response = response {
                     let queriesVC = Storyboards.Main.instantiateQueriesVC()
-                    queriesVC.readmeString = response.content?.fromBase64()
+                    queriesVC.readmeString = response.content?.fromBase64()?.lowercased()
                     queriesVC.repository = repo
                     self.navigationController?.pushViewController(queriesVC, animated: true)
                 } else {

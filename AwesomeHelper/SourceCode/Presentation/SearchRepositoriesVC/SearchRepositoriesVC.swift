@@ -172,7 +172,7 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
         let addAction = SwipeAction(style: .default, title: "Add") { action, indexPath in
             let repo = self.repositoriesToDisplay[indexPath.row]
             var issue = Issue(title: repo.fullName!)
-            issue.body = "[\(repo.name!)](\(repo.htmlUrl!)) - \(repo.descriptionField ?? "Need to find description"). \n Language - \(repo.language ?? "No Language")."
+            issue.body = "[\(repo.name!)](\(repo.htmlUrl!)) - \(repo.descriptionField ?? "Need to find description") \n Language - \(repo.language ?? "No Language")"
             self.showHUD()
             let authentication = TokenAuthentication(token: (self.authentication.token?.token)!)
             IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner!, repository: self.repository.name!, issue: issue, completion: { (response, error) in
