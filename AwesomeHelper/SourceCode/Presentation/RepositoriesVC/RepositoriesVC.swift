@@ -9,9 +9,8 @@
 import UIKit
 import GithubAPI
 import SwipeCellKit
-import RealmSwift
 import Font_Awesome_Swift
-import Salada
+import FireRecord
 
 class RepositoriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
@@ -33,7 +32,7 @@ class RepositoriesVC: BaseVC {
     
     func refreshData() {
         self.showHUD()
-        Repository.observeSingle(.value) { (repositories) in
+        Repository.all { (repositories) in
             self.hideHUD()
             self.repositories = repositories
             self.tableView.reloadData()
@@ -53,8 +52,9 @@ extension RepositoriesVC: UITableViewDelegate, UITableViewDataSource, SwipeTable
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             DispatchQueue.main.async {
                 let repo = self.repositories[indexPath.row]
-                repo.remove()
-                self.refreshData()
+                repo.destroy(completion: { (error) in
+                    self.refreshData()
+                })
             }
         }
         deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
@@ -80,7 +80,6 @@ extension RepositoriesVC: UITableViewDelegate, UITableViewDataSource, SwipeTable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repo = self.repositories[indexPath.row]
-        print(repo.queries.values)
         self.showHUD()
         RepositoriesContentsAPI().getReadme(owner: repo.owner!, repo: repo.name!) { (response, error) in
             DispatchQueue.main.async {

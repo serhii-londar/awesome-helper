@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import RealmSwift
-import FirebaseCore
-import FirebaseDatabase
-import Salada
+import FireRecord
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,13 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-        Salada.SaladaApp.configure()
-        
-//        let a = FRepository.observe(.value, block: { (repositories) in
-//
-//        })
-        
+        FireRecordApp.configure()
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let rootVC = Storyboards.Main.instantiateRepositoriesVC()
         self.window?.rootViewController = BaseNC(rootViewController: rootVC)

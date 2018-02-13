@@ -10,7 +10,6 @@ target 'AwesomeHelper' do
   pod 'Kingfisher'
   pod 'NSDate+TimeAgo'
   pod 'SwiftGen'
-  pod 'RealmSwift'
   pod 'Font-Awesome-Swift'
-  pod 'Salada', :git => 'https://github.com/1amageek/Salada.git'
+  pod 'FireRecord'
 end

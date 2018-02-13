@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 enum AddQueryVCMode {
     case create
@@ -37,21 +36,32 @@ class AddQueryVC: BaseVC {
     
     @IBAction func addQueryButtonPressed(_ sender: Any) {
         if let queryText = self.queryTextField.text {
-            do {
-                if mode == .create {
-                    query?.query = queryText
-                    query?.repository = repository
-                    self.repository.queries.insert(self.query!)
-//                    self.repository.save()
-//                    query?.save({ (ref, error) in
-//                    })
-                } else if mode == .edit {
-                    query?.query = queryText
-                    query?.save()
-                }
-                self.navigationController?.popViewController(animated: true)
-            } catch {
-                self.showErrorAlert(error.localizedDescription)
+            if mode == .create {
+                query?.query = queryText
+                query?.repository = repository.key
+                query?.save(completion: { (error) in
+                    if let error = error {
+                        self.showErrorAlert(error.localizedDescription)
+                    } else {
+                        self.repository.queries.insert((self.query?.key)!, at: 0)
+                        self.repository.update (completion: { (error) in
+                            if let error = error {
+                                self.showErrorAlert(error.localizedDescription)
+                            } else {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        })
+                    }
+                })
+            } else if mode == .edit {
+                query?.query = queryText
+                query?.save(completion: { (error) in
+                    if let error = error {
+                        self.showErrorAlert(error.localizedDescription)
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                })
             }
         } else {
             self.showErrorAlert("Query can't be empty")

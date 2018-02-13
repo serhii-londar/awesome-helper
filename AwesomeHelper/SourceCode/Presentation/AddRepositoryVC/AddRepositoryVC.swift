@@ -41,12 +41,12 @@ class AddRepositoryVC: BaseVC {
         repository.name = repositoryNameTextField.text!
         repository.owner = repositoryOwnerTextField.text!
         repository.url = repo.htmlUrl ?? "empty"
-        repository.save({ (ref, error) in
+        repository.save { (error) in
             if let error = error {
                 self.showErrorAlert(error.localizedDescription)
             } else {
                 self.navigationController?.popViewController(animated: true)
             }
-        })
+        }
     }
 }

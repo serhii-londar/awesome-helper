@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0FB3ED74F621AFF601E998C6 /* Pods_AwesomeHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4B231A044DDAB0644EB30C /* Pods_AwesomeHelper.framework */; };
-		921602102023B2D200AC1E8B /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9216020F2023B2D200AC1E8B /* Classes.swift */; };
 		921602122023C9F300AC1E8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921602112023C9F300AC1E8B /* Foundation.framework */; };
 		922B5B53201F939C003B9996 /* RepositoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B5B52201F939C003B9996 /* RepositoriesVC.swift */; };
 		924740C6201FAFC800A7F024 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924740C4201FAFC800A7F024 /* BaseVC.swift */; };
@@ -29,7 +28,7 @@
 		9299DD09200D5ABC0083BF1F /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD05200D5ABC0083BF1F /* Credentials.swift */; };
 		9299DD0C200D5DBC0083BF1F /* AddQueryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD0B200D5DBC0083BF1F /* AddQueryVC.swift */; };
 		9299DD0E200D627B0083BF1F /* QueryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD0D200D627B0083BF1F /* QueryCell.swift */; };
-		92A2E49A20253DBC00463F64 /* Classess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A2E49920253DBC00463F64 /* Classess.swift */; };
+		92A2E49A20253DBC00463F64 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A2E49920253DBC00463F64 /* Firebase.swift */; };
 		92E36D8C201F940E00E45B3D /* AddRepositoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */; };
 		92E36D8F201FA06200E45B3D /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E36D8E201FA06200E45B3D /* Storyboards.swift */; };
 		92E45FD52025305B00302435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E45FD42025305B00302435 /* GoogleService-Info.plist */; };
@@ -37,7 +36,6 @@
 		92E7D926200D318A0023F4F6 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D925200D318A0023F4F6 /* WebVC.swift */; };
 		92E7D928200D363C0023F4F6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E7D927200D363C0023F4F6 /* WebKit.framework */; };
 		92E7D92A200D39450023F4F6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E7D929200D39450023F4F6 /* MobileCoreServices.framework */; };
-		92F711882021452400224726 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F711872021452400224726 /* Realm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,7 +54,6 @@
 /* Begin PBXFileReference section */
 		4E4B231A044DDAB0644EB30C /* Pods_AwesomeHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomeHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F68F02F9BC9DC55D75B240A /* Pods-AwesomeHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeHelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper.release.xcconfig"; sourceTree = "<group>"; };
-		9216020F2023B2D200AC1E8B /* Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		921602112023C9F300AC1E8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		922B5B52201F939C003B9996 /* RepositoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesVC.swift; sourceTree = "<group>"; };
 		924740C4201FAFC800A7F024 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -79,7 +76,7 @@
 		9299DD05200D5ABC0083BF1F /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		9299DD0B200D5DBC0083BF1F /* AddQueryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQueryVC.swift; sourceTree = "<group>"; };
 		9299DD0D200D627B0083BF1F /* QueryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryCell.swift; sourceTree = "<group>"; };
-		92A2E49920253DBC00463F64 /* Classess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classess.swift; sourceTree = "<group>"; };
+		92A2E49920253DBC00463F64 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepositoryVC.swift; sourceTree = "<group>"; };
 		92E36D8E201FA06200E45B3D /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		92E45FD42025305B00302435 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -87,7 +84,6 @@
 		92E7D925200D318A0023F4F6 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		92E7D927200D363C0023F4F6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		92E7D929200D39450023F4F6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		92F711872021452400224726 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		B6CA79F501DB75245C9C1577 /* Pods-AwesomeHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeHelper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,7 +235,7 @@
 		92A2E49820253DAC00463F64 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				92A2E49920253DBC00463F64 /* Classess.swift */,
+				92A2E49920253DBC00463F64 /* Firebase.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -256,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				92A2E49820253DAC00463F64 /* Firebase */,
-				92F711862021451900224726 /* Database */,
 				924740C3201FAFC800A7F024 /* BaseClasses */,
 				92E36D96201FA2C900E45B3D /* Helpers */,
 				9282D48E200A783B0004E3AA /* Presentation */,
@@ -296,15 +291,6 @@
 				92E7D925200D318A0023F4F6 /* WebVC.swift */,
 			);
 			path = WebVC;
-			sourceTree = "<group>";
-		};
-		92F711862021451900224726 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				92F711872021452400224726 /* Realm.swift */,
-				9216020F2023B2D200AC1E8B /* Classes.swift */,
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		B5B20B21C29EF89541D85C2B /* Pods */ = {
@@ -400,35 +386,35 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BaseAPI/BaseAPI.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/FireRecord/FireRecord.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCommunity/FirebaseCommunity.framework",
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GithubAPI/GithubAPI.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NSDate+TimeAgo/NSDate_TimeAgo.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseAPI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FireRecord.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCommunity.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GithubAPI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDate_TimeAgo.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -498,9 +484,7 @@
 				9299DD0C200D5DBC0083BF1F /* AddQueryVC.swift in Sources */,
 				92E7D923200D1E920023F4F6 /* ViewController.swift in Sources */,
 				92E7D926200D318A0023F4F6 /* WebVC.swift in Sources */,
-				92F711882021452400224726 /* Realm.swift in Sources */,
-				921602102023B2D200AC1E8B /* Classes.swift in Sources */,
-				92A2E49A20253DBC00463F64 /* Classess.swift in Sources */,
+				92A2E49A20253DBC00463F64 /* Firebase.swift in Sources */,
 				9299DD07200D5ABC0083BF1F /* Basic.swift in Sources */,
 				926309222007EFA100CD2329 /* QueriesVC.swift in Sources */,
 				924740C9201FB1D300A7F024 /* RepositoryCell.swift in Sources */,

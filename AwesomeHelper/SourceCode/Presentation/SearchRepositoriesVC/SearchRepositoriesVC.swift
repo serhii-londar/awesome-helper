@@ -11,7 +11,6 @@ import UIKit
 import GithubAPI
 import ESPullToRefresh
 import SwipeCellKit
-import RealmSwift
 import Font_Awesome_Swift
 
 class SearchRepositoriesVC: BaseVC {
@@ -24,15 +23,15 @@ class SearchRepositoriesVC: BaseVC {
     var repositoriesToDisplay: [SearchRepositoriesItem] = [SearchRepositoriesItem]()
     var repositoriesCount: Int = 0
     var authentication: Credentials! = nil
+    var reviewedRepositories: [ReviewedRepository] = [ReviewedRepository]()
     
     func filterRepositories() {
         self.repositoriesToDisplay = self.repositories.filter({ (item) -> Bool in
-//            let ignored = self.repository.ignoredRepos.filter("url == \"\(item.htmlUrl!)\"")
-//            let existInIgnored = ignored.count > 0
-//            let reviewed = self.repository.aprovedRepos.filter("url == \"\(item.htmlUrl!)\"")
-//            let existInReviewed = reviewed.count > 0
-//            return readmeString.contains(item.htmlUrl!) == false && existInIgnored == false && existInReviewed == false
-            return false
+            let reviewed = self.reviewedRepositories.filter({ (repo) -> Bool in
+                return repo.url == item.htmlUrl!
+            })
+            let existInReviewed = reviewed.count > 0
+            return readmeString.contains(item.htmlUrl!) == false && existInReviewed == false
         })
     }
     
@@ -45,21 +44,26 @@ class SearchRepositoriesVC: BaseVC {
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 100
         self.tableView.tableFooterView = UIView()
+        
         self.tableView.es.addPullToRefresh {
             self.showHUD()
-            SearchAPI().searchRepositories(q: self.searchQuery.query!) { (response, error) in
-                if let response = response {
-                    DispatchQueue.main.async {
-                        self.repositoriesCount = response.totalCount!
-                        self.repositories = response.items!
-                        self.filterRepositories()
-                        self.tableView.reloadData()
+            
+            ReviewedRepository.order(byProperty: "repository").where(value: self.repository.key!).find { (reviewedRepositories) in
+                self.reviewedRepositories = reviewedRepositories
+                SearchAPI().searchRepositories(q: self.searchQuery.query!) { (response, error) in
+                    if let response = response {
+                        DispatchQueue.main.async {
+                            self.repositoriesCount = response.totalCount!
+                            self.repositories = response.items!
+                            self.filterRepositories()
+                            self.tableView.reloadData()
+                        }
                     }
+                    DispatchQueue.main.async {
+                        self.tableView.es.stopPullToRefresh()
+                    }
+                    self.hideHUD()
                 }
-                DispatchQueue.main.async {
-                    self.tableView.es.stopPullToRefresh()
-                }
-                self.hideHUD()
             }
         }
         
@@ -135,22 +139,33 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             let repo = self.repositoriesToDisplay[indexPath.row]
-            let reviewedRepo = ReviewedRepository()
-            reviewedRepo.name = repo.name!
-            reviewedRepo.owner = repo.owner?.login ?? ""
-            reviewedRepo.url = repo.htmlUrl!
-            DispatchQueue.main.async {
-                do {
-//                    try Realm.default.write {
-//                        Realm.default.add(reviewedRepo)
-//                        self.repository.ignoredRepos.append(reviewedRepo)
-//                    }
-                    self.filterRepositories()
-                    self.tableView.reloadData()
-                } catch {
-                    print(error)
+            let reviewedRepository = ReviewedRepository()
+            reviewedRepository.name = repo.name!
+            reviewedRepository.owner = repo.owner?.login ?? ""
+            reviewedRepository.url = repo.htmlUrl!
+            reviewedRepository.aproved = false
+            reviewedRepository.repository = self.repository.key
+            self.showHUD()
+            reviewedRepository.save(completion: { (error) in
+                self.hideHUD()
+                if let error = error {
+                    self.hideHUD()
+                    self.showErrorAlert(error.localizedDescription)
+                } else {
+                    self.reviewedRepositories.append(reviewedRepository)
+                    self.repository.reviewedRepositories.append(reviewedRepository.key!)
+                    self.repository.update(completion: { (error) in
+                        if let error = error {
+                            self.hideHUD()
+                            self.showErrorAlert(error.localizedDescription)
+                        } else {
+                            self.hideHUD()
+                            self.filterRepositories()
+                            self.tableView.reloadData()
+                        }
+                    })
                 }
-            }
+            })
         }
         deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
         
@@ -167,33 +182,36 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
                         reviewedRepository.name = repo.name!
                         reviewedRepository.owner = repo.owner?.login ?? ""
                         reviewedRepository.url = repo.htmlUrl!
-//                        do {
-//                            try Realm.default.write {
-//                                Realm.default.add(reviewedRepository)
-//                                self.repository.aprovedRepos.append(reviewedRepository)
-//                            }
-//                        } catch {
-//                            self.showErrorAlert(error.localizedDescription)
-//                        }
-                        self.filterRepositories()
-                        self.tableView.reloadData()
+                        reviewedRepository.aproved = true
+                        reviewedRepository.repository = self.repository.key
+                        reviewedRepository.save(completion: { (error) in
+                            if let error = error {
+                                self.hideHUD()
+                                self.showErrorAlert(error.localizedDescription)
+                            } else {
+                                self.reviewedRepositories.append(reviewedRepository)
+                                self.repository.reviewedRepositories.append(reviewedRepository.key!)
+                                self.repository.update(completion: { (error) in
+                                    if let error = error {
+                                        self.hideHUD()
+                                        self.showErrorAlert(error.localizedDescription)
+                                    } else {
+                                        self.hideHUD()
+                                        self.filterRepositories()
+                                        self.tableView.reloadData()
+                                    }
+                                })
+                            }
+                        })
                     }
                 } else {
+                    self.hideHUD()
                     self.showErrorAlert(error?.localizedDescription ?? "Unrecognized Error!")
                 }
-                self.hideHUD()
             })
         }
         addAction.image = UIImage.init(icon: FAType.FAPlusCircle, size: CGSize(width: 35, height: 35))
         
-        
         return [addAction, deleteAction]
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
-        var options = SwipeTableOptions()
-        //        options.expansionStyle = .destructive
-        //        options.transitionStyle = .border
-        return options
     }
 }

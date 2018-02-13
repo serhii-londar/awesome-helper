@@ -8,7 +8,6 @@
 
 import UIKit
 import SwipeCellKit
-import RealmSwift
 import Font_Awesome_Swift
 
 class QueriesVC: BaseVC {
@@ -32,8 +31,7 @@ class QueriesVC: BaseVC {
     }
     
     func refreshData() {
-        self.repository.queries.ref
-        Query.observeSingle(.value) { queries in
+        Query.order(byProperty: "repository").where(value: repository.key!).observeFind { (queries) in
             self.queries = queries
             self.tableView.reloadData()
         }
@@ -53,8 +51,8 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             let query = self.repository.queries[indexPath.row]
-            query.remove()
-            self.repository.queries.remove(query)
+//            query.remove()
+//            self.repository.queries.remove(query)
             self.tableView.reloadData()
         }
         deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
@@ -63,7 +61,7 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
             let query = self.repository.queries[indexPath.row]
             let addQueryVC = Storyboards.Main.instantiateAddQueryVC()
             addQueryVC.repository = self.repository
-            addQueryVC.query = query
+//            addQueryVC.query = query
             self.navigationController?.pushViewController(addQueryVC, animated: true)
         }
         editAction.image = UIImage.init(icon: .FAEdit, size: CGSize(width: 35, height: 35))
