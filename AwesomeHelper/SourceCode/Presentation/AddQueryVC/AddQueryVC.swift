@@ -55,7 +55,7 @@ class AddQueryVC: BaseVC {
                 })
             } else if mode == .edit {
                 query?.query = queryText
-                query?.save(completion: { (error) in
+                query?.update(completion: { (error) in
                     if let error = error {
                         self.showErrorAlert(error.localizedDescription)
                     } else {

@@ -50,18 +50,33 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            let query = self.repository.queries[indexPath.row]
-//            query.remove()
-//            self.repository.queries.remove(query)
-            self.tableView.reloadData()
+            let query = self.queries[indexPath.row]
+            self.showHUD()
+            query.destroy(completion: { (error) in
+                if let error = error {
+                    self.hideHUD()
+                    self.showErrorAlert(error.localizedDescription)
+                } else {
+                    self.repository.queries.remove(at: indexPath.row)
+                    self.repository.update(completion: { (error) in
+                        if let error = error {
+                            self.hideHUD()
+                            self.showErrorAlert(error.localizedDescription)
+                        } else {
+                            self.hideHUD()
+                            self.tableView.reloadData()
+                        }
+                    })
+                }
+            })
         }
         deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
         
-        let editAction = SwipeAction(style: .destructive, title: "Edit") { action, indexPath in
-            let query = self.repository.queries[indexPath.row]
+        let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
+            let query = self.queries[indexPath.row]
             let addQueryVC = Storyboards.Main.instantiateAddQueryVC()
             addQueryVC.repository = self.repository
-//            addQueryVC.query = query
+            addQueryVC.query = query
             self.navigationController?.pushViewController(addQueryVC, animated: true)
         }
         editAction.image = UIImage.init(icon: .FAEdit, size: CGSize(width: 35, height: 35))
