@@ -52,23 +52,23 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             let query = self.queries[indexPath.row]
             self.showHUD()
-            query.destroy(completion: { (error) in
+            self.repository.queries.remove(at: indexPath.row)
+            self.repository.update(completion: { (error) in
                 if let error = error {
                     self.hideHUD()
                     self.showErrorAlert(error.localizedDescription)
                 } else {
-                    self.repository.queries.remove(at: indexPath.row)
-                    self.repository.update(completion: { (error) in
+                    query.destroy(completion: { (error) in
+                        self.hideHUD()
                         if let error = error {
-                            self.hideHUD()
                             self.showErrorAlert(error.localizedDescription)
                         } else {
-                            self.hideHUD()
                             self.tableView.reloadData()
                         }
                     })
                 }
             })
+            
         }
         deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
         
