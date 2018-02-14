@@ -31,7 +31,7 @@ class SearchRepositoriesVC: BaseVC {
                 return repo.url == item.htmlUrl!
             })
             let existInReviewed = reviewed.count > 0
-            return readmeString.contains(item.htmlUrl!) == false && existInReviewed == false
+            return readmeString.contains(item.htmlUrl!.lowercased()) == false && existInReviewed == false
         })
     }
     
