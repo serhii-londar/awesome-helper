@@ -61,10 +61,10 @@ class SearchRepositoryCell: SwipeTableViewCell {
             self.repoForksImageView.isHidden = false
         }
         
-        if let updatedAt = repository.updatedAt {
+        if let pushedAt = repository.pushedAt {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            if let date = dateFormatter.date(from: updatedAt) {
+            if let date = dateFormatter.date(from: pushedAt) {
                 self.repoLastModifiedDate.text = (date as NSDate).dateTimeAgo()
             }
         }

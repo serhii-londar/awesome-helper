@@ -57,6 +57,9 @@ class SearchRepositoriesVC: BaseVC {
                             self.repositories = response.items!
                             self.filterRepositories()
                             self.tableView.reloadData()
+                            if self.repositoriesToDisplay.count == 0 {
+                                self.tableView.footer?.start()
+                            }
                         }
                     }
                     DispatchQueue.main.async {
@@ -69,18 +72,12 @@ class SearchRepositoriesVC: BaseVC {
         
         self.tableView.es.addInfiniteScrolling {
             if self.repositories.count >= self.repositoriesCount {
-                self.tableView.es.stopLoadingMore()
+                self.tableView.es.noticeNoMoreData()
                 return
             }
             self.showHUD()
             let pageNumber = Int(self.repositories.count / 100) + 1
             SearchAPI().searchRepositories(q: self.searchQuery.query!, page: pageNumber, per_page: 100, completion: { (response, error) in
-                if self.repositories.count >= self.repositoriesCount {
-                    DispatchQueue.main.async {
-                        self.tableView.es.stopLoadingMore()
-                        return
-                    }
-                }
                 if let response = response {
                     DispatchQueue.main.async {
                         self.repositories.append(contentsOf: response.items ?? [])
@@ -92,6 +89,9 @@ class SearchRepositoriesVC: BaseVC {
                     self.tableView.es.stopLoadingMore()
                 }
                 self.hideHUD()
+                if self.repositoriesToDisplay.count == 0 {
+                    self.tableView.footer?.start()
+                }
             })
         }
         
@@ -147,7 +147,6 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
             reviewedRepository.repository = self.repository.key
             self.showHUD()
             reviewedRepository.save(completion: { (error) in
-                self.hideHUD()
                 if let error = error {
                     self.hideHUD()
                     self.showErrorAlert(error.localizedDescription)
@@ -155,11 +154,10 @@ extension SearchRepositoriesVC : UITableViewDelegate, UITableViewDataSource, Swi
                     self.reviewedRepositories.append(reviewedRepository)
                     self.repository.reviewedRepositories.append(reviewedRepository.key!)
                     self.repository.update(completion: { (error) in
+                        self.hideHUD()
                         if let error = error {
-                            self.hideHUD()
                             self.showErrorAlert(error.localizedDescription)
                         } else {
-                            self.hideHUD()
                             self.filterRepositories()
                             self.tableView.reloadData()
                         }
