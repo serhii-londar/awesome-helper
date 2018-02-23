@@ -20,5 +20,5 @@ DerivedData
 *.ipa
 
 Pods/
-AwesomeHelper/Github/credentials.json
+AwesomeHelper/SourceCode/Github/credentials.json
 AwesomeHelper/GoogleService-Info.plist
