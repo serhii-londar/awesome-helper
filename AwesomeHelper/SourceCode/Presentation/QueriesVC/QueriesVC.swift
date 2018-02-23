@@ -12,36 +12,22 @@ import Font_Awesome_Swift
 
 class QueriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
-    var readmeString: String! = nil
-    var repository: Repository! = nil
-    var queries: [Query] = []
+    
+    override var presenter: QueriesPresenter {
+        return _presenter as! QueriesPresenter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
-        self.title = repository.name
+        self.title = presenter.repository.name
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(icon: FAType.FAPlusCircle, size: CGSize(width: 35, height: 35)), style: .plain, target: self, action: #selector(addQueryButtonPressed(_:)))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.refreshData()
-    }
-    
-    func refreshData() {
-        Query.order(byProperty: "repository").where(value: repository.key!).observeFind { (queries) in
-            self.queries = queries
-            self.tableView.reloadData()
-        }
-    }
+    }    
     
     @IBAction func addQueryButtonPressed(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let addQueryVC = storyboard.instantiateViewController(withIdentifier: "AddQueryVC") as! AddQueryVC
-        addQueryVC.repository = self.repository
-        self.navigationController?.pushViewController(addQueryVC, animated: true)
+        self.presenter.addQuery()
     }
 }
 
@@ -50,34 +36,12 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            let query = self.queries[indexPath.row]
-            self.showHUD()
-            self.repository.queries.remove(at: indexPath.row)
-            self.repository.update(completion: { (error) in
-                if let error = error {
-                    self.hideHUD()
-                    self.showErrorAlert(error.localizedDescription)
-                } else {
-                    query.destroy(completion: { (error) in
-                        self.hideHUD()
-                        if let error = error {
-                            self.showErrorAlert(error.localizedDescription)
-                        } else {
-                            self.tableView.reloadData()
-                        }
-                    })
-                }
-            })
-            
+            self.presenter.deleteQueryAtIndex(indexPath.row)
         }
         deleteAction.image = UIImage.init(icon: FAType.FATrash, size: CGSize(width: 35, height: 35))
         
         let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
-            let query = self.queries[indexPath.row]
-            let addQueryVC = Storyboards.Main.instantiateAddQueryVC()
-            addQueryVC.repository = self.repository
-            addQueryVC.query = query
-            self.navigationController?.pushViewController(addQueryVC, animated: true)
+            self.presenter.editQueryAtIndex(indexPath.row)
         }
         editAction.image = UIImage.init(icon: .FAEdit, size: CGSize(width: 35, height: 35))
         
@@ -85,20 +49,16 @@ extension QueriesVC : UITableViewDelegate, UITableViewDataSource, SwipeTableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.queries.count
+        return self.presenter.queries.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repositoryVC = Storyboards.Main.instantiateSearchRepositoriesVC()
-        repositoryVC.readmeString = readmeString
-        repositoryVC.searchQuery = self.queries[indexPath.row]
-        repositoryVC.repository = self.repository
-        self.navigationController?.pushViewController(repositoryVC, animated: true)
+        self.presenter.openQueryAtIndex(indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "QueryCell", for: indexPath) as! QueryCell
-        cell.setupWith(self.queries[indexPath.row])
+        cell.setupWith(self.presenter.queries[indexPath.row])
         cell.delegate = self
         return cell
     }

@@ -29,6 +29,14 @@
 		92A2E49A20253DBC00463F64 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A2E49920253DBC00463F64 /* Firebase.swift */; };
 		92C0EE622040900E00D2DAC1 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE602040900E00D2DAC1 /* BaseVC.swift */; };
 		92C0EE632040900E00D2DAC1 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE612040900E00D2DAC1 /* BaseNC.swift */; };
+		92C0EE66204091D700D2DAC1 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE64204091D600D2DAC1 /* BasePresenter.swift */; };
+		92C0EE67204091D700D2DAC1 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE65204091D700D2DAC1 /* BaseRouter.swift */; };
+		92C0EE69204091DD00D2DAC1 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE68204091DD00D2DAC1 /* Module.swift */; };
+		92C0EE6B2040937800D2DAC1 /* AddRepositoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE6A2040937800D2DAC1 /* AddRepositoryPresenter.swift */; };
+		92C0EE6F204097E800D2DAC1 /* RepositoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE6E204097E800D2DAC1 /* RepositoriesPresenter.swift */; };
+		92C0EE7120409D1800D2DAC1 /* QueriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE7020409D1800D2DAC1 /* QueriesPresenter.swift */; };
+		92C0EE732040A5E100D2DAC1 /* AddQueryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE722040A5E100D2DAC1 /* AddQueryPresenter.swift */; };
+		92C0EE752040A8E800D2DAC1 /* SearchRepositoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE742040A8E800D2DAC1 /* SearchRepositoriesPresenter.swift */; };
 		92E36D8C201F940E00E45B3D /* AddRepositoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */; };
 		92E36D8F201FA06200E45B3D /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E36D8E201FA06200E45B3D /* Storyboards.swift */; };
 		92E45FD52025305B00302435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E45FD42025305B00302435 /* GoogleService-Info.plist */; };
@@ -77,6 +85,14 @@
 		92A2E49920253DBC00463F64 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		92C0EE602040900E00D2DAC1 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		92C0EE612040900E00D2DAC1 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
+		92C0EE64204091D600D2DAC1 /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
+		92C0EE65204091D700D2DAC1 /* BaseRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		92C0EE68204091DD00D2DAC1 /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		92C0EE6A2040937800D2DAC1 /* AddRepositoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepositoryPresenter.swift; sourceTree = "<group>"; };
+		92C0EE6E204097E800D2DAC1 /* RepositoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesPresenter.swift; sourceTree = "<group>"; };
+		92C0EE7020409D1800D2DAC1 /* QueriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueriesPresenter.swift; sourceTree = "<group>"; };
+		92C0EE722040A5E100D2DAC1 /* AddQueryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQueryPresenter.swift; sourceTree = "<group>"; };
+		92C0EE742040A8E800D2DAC1 /* SearchRepositoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesPresenter.swift; sourceTree = "<group>"; };
 		92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepositoryVC.swift; sourceTree = "<group>"; };
 		92E36D8E201FA06200E45B3D /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		92E45FD42025305B00302435 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -105,6 +121,7 @@
 		922B5B51201F938E003B9996 /* RepositoriesVC */ = {
 			isa = PBXGroup;
 			children = (
+				92C0EE6E204097E800D2DAC1 /* RepositoriesPresenter.swift */,
 				922B5B52201F939C003B9996 /* RepositoriesVC.swift */,
 				924740C8201FB1D300A7F024 /* RepositoryCell.swift */,
 			);
@@ -179,6 +196,7 @@
 		9282D48F200A78490004E3AA /* SearchRepositoriesVC */ = {
 			isa = PBXGroup;
 			children = (
+				92C0EE742040A8E800D2DAC1 /* SearchRepositoriesPresenter.swift */,
 				9282D491200A78A60004E3AA /* SearchRepositoriesVC.swift */,
 				9299DCFA200D47010083BF1F /* SearchRepositoryCell.swift */,
 			);
@@ -188,6 +206,7 @@
 		9282D490200A78540004E3AA /* QueriesVC */ = {
 			isa = PBXGroup;
 			children = (
+				92C0EE7020409D1800D2DAC1 /* QueriesPresenter.swift */,
 				926309212007EFA100CD2329 /* QueriesVC.swift */,
 				9299DD0D200D627B0083BF1F /* QueryCell.swift */,
 			);
@@ -218,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				9299DD0B200D5DBC0083BF1F /* AddQueryVC.swift */,
+				92C0EE722040A5E100D2DAC1 /* AddQueryPresenter.swift */,
 			);
 			path = AddQueryVC;
 			sourceTree = "<group>";
@@ -233,6 +253,9 @@
 		92C0EE5F2040900E00D2DAC1 /* BaseClasses */ = {
 			isa = PBXGroup;
 			children = (
+				92C0EE68204091DD00D2DAC1 /* Module.swift */,
+				92C0EE64204091D600D2DAC1 /* BasePresenter.swift */,
+				92C0EE65204091D700D2DAC1 /* BaseRouter.swift */,
 				92C0EE602040900E00D2DAC1 /* BaseVC.swift */,
 				92C0EE612040900E00D2DAC1 /* BaseNC.swift */,
 			);
@@ -243,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */,
+				92C0EE6A2040937800D2DAC1 /* AddRepositoryPresenter.swift */,
 			);
 			path = AddRepositoryVC;
 			sourceTree = "<group>";
@@ -473,13 +497,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92C0EE6B2040937800D2DAC1 /* AddRepositoryPresenter.swift in Sources */,
 				922B5B53201F939C003B9996 /* RepositoriesVC.swift in Sources */,
+				92C0EE66204091D700D2DAC1 /* BasePresenter.swift in Sources */,
 				9299DCFB200D47010083BF1F /* SearchRepositoryCell.swift in Sources */,
 				9282D492200A78A60004E3AA /* SearchRepositoriesVC.swift in Sources */,
 				9299DD08200D5ABC0083BF1F /* Token.swift in Sources */,
+				92C0EE752040A8E800D2DAC1 /* SearchRepositoriesPresenter.swift in Sources */,
 				924740CC201FDB1A00A7F024 /* String.swift in Sources */,
 				9299DD09200D5ABC0083BF1F /* Credentials.swift in Sources */,
+				92C0EE69204091DD00D2DAC1 /* Module.swift in Sources */,
+				92C0EE67204091D700D2DAC1 /* BaseRouter.swift in Sources */,
 				92E36D8F201FA06200E45B3D /* Storyboards.swift in Sources */,
+				92C0EE7120409D1800D2DAC1 /* QueriesPresenter.swift in Sources */,
+				92C0EE732040A5E100D2DAC1 /* AddQueryPresenter.swift in Sources */,
 				9299DD0C200D5DBC0083BF1F /* AddQueryVC.swift in Sources */,
 				92E7D923200D1E920023F4F6 /* ViewController.swift in Sources */,
 				92E7D926200D318A0023F4F6 /* WebVC.swift in Sources */,
@@ -493,6 +524,7 @@
 				92C0EE632040900E00D2DAC1 /* BaseNC.swift in Sources */,
 				92C0EE622040900E00D2DAC1 /* BaseVC.swift in Sources */,
 				9299DD0E200D627B0083BF1F /* QueryCell.swift in Sources */,
+				92C0EE6F204097E800D2DAC1 /* RepositoriesPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

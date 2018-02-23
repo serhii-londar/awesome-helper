@@ -14,29 +14,25 @@ class AddRepositoryVC: BaseVC {
     @IBOutlet weak var repositoryNameTextField: UITextField! = nil
     @IBOutlet weak var addRepositoryButton: UIButton! = nil
     
+    override var presenter: AddRepositoryPresenter {
+        return _presenter as! AddRepositoryPresenter
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func addRepositoryButtonPressed(_ sender: AnyObject) {
         if let owner = repositoryOwnerTextField.text, let name = repositoryNameTextField.text {
-            self.showHUD()
-            RepositoriesAPI().get(owner: owner, repo: name, completion: { (response, error) in
-                DispatchQueue.main.async {
-                    self.hideHUD()
-                    if let response = response {
-                        self.addRepository(response)
-                    } else {
-                        print(error ?? "")
-                    }
-                }
-            })
+            self.presenter.addRepository(name: name, owner: owner)
         } else {
             self.showErrorAlert("Please enter repository owner and name.")
         }
     }
     
-    func addRepository(_ repo: RepositoryResponse) {
+    
+    
+    func addRepository(_ repo: RepositoryResponse, name: String, owner: String) {
         let repository = Repository()
         repository.name = repositoryNameTextField.text!
         repository.owner = repositoryOwnerTextField.text!

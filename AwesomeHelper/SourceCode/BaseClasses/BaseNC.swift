@@ -1,6 +1,6 @@
 //
 //  BaseNC.swift
-//  Opendota
+//  AwesomeHelper
 //
 //  Created by Serhii Londar on 1/23/18.
 //  Copyright © 2018 slon. All rights reserved.

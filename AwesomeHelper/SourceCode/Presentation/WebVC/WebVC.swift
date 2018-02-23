@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WebVC: BaseVC {
+class WebVC: UIViewController {
     var webView: WKWebView! = nil
     var screenTitle: String! = nil
     var urlToLoad: URL! = nil

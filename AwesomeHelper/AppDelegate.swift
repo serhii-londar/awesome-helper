@@ -17,12 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FireRecordApp.configure()
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let rootVC = Storyboards.Main.instantiateRepositoriesVC()
-        self.window?.rootViewController = BaseNC(rootViewController: rootVC)
-        self.window?.makeKeyAndVisible()
+        
+        let repositoriesVC = Storyboards.Main.instantiateRepositoriesVC()
+        let repositoriesRouter = BaseRouter(view: repositoriesVC)
+        let repositoriesPresenter = RepositoriesPresenter(view: repositoriesVC, router: repositoriesRouter)
+        let module = Module(view: repositoriesVC, presenter: repositoriesPresenter, router: repositoriesRouter)
+        self.showModule(module)
+        
         return true
     }
-
+    
+    func showModule(_ module: Module) {
+        self.window?.rootViewController = BaseNC(rootViewController: module.view)
+        self.window?.makeKeyAndVisible()
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
