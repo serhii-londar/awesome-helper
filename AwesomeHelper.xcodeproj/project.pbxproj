@@ -276,19 +276,11 @@
 			children = (
 				92C0EE5F2040900E00D2DAC1 /* BaseClasses */,
 				92A2E49820253DAC00463F64 /* Firebase */,
-				92E36D96201FA2C900E45B3D /* Helpers */,
 				9282D48E200A783B0004E3AA /* Presentation */,
 				9299DCFE200D5AA80083BF1F /* Github */,
 				92E7D920200D1E720023F4F6 /* Extensions */,
 			);
 			path = SourceCode;
-			sourceTree = "<group>";
-		};
-		92E36D96201FA2C900E45B3D /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		92E7D920200D1E720023F4F6 /* Extensions */ = {
