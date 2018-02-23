@@ -52,6 +52,26 @@ extension RepositoriesVC: UITableViewDelegate, UITableViewDataSource, SwipeTable
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             DispatchQueue.main.async {
                 let repo = self.repositories[indexPath.row]
+                
+                Query.order(byProperty: "repository").where(value: repo.key!).observeFind { (queries) in
+                    let queriesToRemove = queries
+                    
+                    for query in queriesToRemove {
+                        query.destroy(completion: { (error) in
+                            
+                        })
+                    }
+                }
+                
+                ReviewedRepository.order(byProperty: "repository").where(value: repo.key!).find { (reviewedRepositories) in
+                    let reviewedRepositoriesToRemove = reviewedRepositories
+                    for reviewedRepository in reviewedRepositoriesToRemove {
+                        reviewedRepository.destroy(completion: { (error) in
+                            
+                        })
+                    }
+                }
+                
                 repo.destroy(completion: { (error) in
                     self.refreshData()
                 })

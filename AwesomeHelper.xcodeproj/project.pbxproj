@@ -10,8 +10,6 @@
 		0FB3ED74F621AFF601E998C6 /* Pods_AwesomeHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4B231A044DDAB0644EB30C /* Pods_AwesomeHelper.framework */; };
 		921602122023C9F300AC1E8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921602112023C9F300AC1E8B /* Foundation.framework */; };
 		922B5B53201F939C003B9996 /* RepositoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B5B52201F939C003B9996 /* RepositoriesVC.swift */; };
-		924740C6201FAFC800A7F024 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924740C4201FAFC800A7F024 /* BaseVC.swift */; };
-		924740C7201FAFC800A7F024 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924740C5201FAFC800A7F024 /* BaseNC.swift */; };
 		924740C9201FB1D300A7F024 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924740C8201FB1D300A7F024 /* RepositoryCell.swift */; };
 		924740CC201FDB1A00A7F024 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924740CB201FDB1A00A7F024 /* String.swift */; };
 		926309202007EFA100CD2329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9263091F2007EFA100CD2329 /* AppDelegate.swift */; };
@@ -29,6 +27,8 @@
 		9299DD0C200D5DBC0083BF1F /* AddQueryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD0B200D5DBC0083BF1F /* AddQueryVC.swift */; };
 		9299DD0E200D627B0083BF1F /* QueryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD0D200D627B0083BF1F /* QueryCell.swift */; };
 		92A2E49A20253DBC00463F64 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A2E49920253DBC00463F64 /* Firebase.swift */; };
+		92C0EE622040900E00D2DAC1 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE602040900E00D2DAC1 /* BaseVC.swift */; };
+		92C0EE632040900E00D2DAC1 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE612040900E00D2DAC1 /* BaseNC.swift */; };
 		92E36D8C201F940E00E45B3D /* AddRepositoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */; };
 		92E36D8F201FA06200E45B3D /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E36D8E201FA06200E45B3D /* Storyboards.swift */; };
 		92E45FD52025305B00302435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E45FD42025305B00302435 /* GoogleService-Info.plist */; };
@@ -56,8 +56,6 @@
 		5F68F02F9BC9DC55D75B240A /* Pods-AwesomeHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeHelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper.release.xcconfig"; sourceTree = "<group>"; };
 		921602112023C9F300AC1E8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		922B5B52201F939C003B9996 /* RepositoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesVC.swift; sourceTree = "<group>"; };
-		924740C4201FAFC800A7F024 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
-		924740C5201FAFC800A7F024 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		924740C8201FB1D300A7F024 /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		924740CB201FDB1A00A7F024 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		9263091C2007EFA100CD2329 /* AwesomeHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +75,8 @@
 		9299DD0B200D5DBC0083BF1F /* AddQueryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQueryVC.swift; sourceTree = "<group>"; };
 		9299DD0D200D627B0083BF1F /* QueryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryCell.swift; sourceTree = "<group>"; };
 		92A2E49920253DBC00463F64 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		92C0EE602040900E00D2DAC1 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		92C0EE612040900E00D2DAC1 /* BaseNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		92E36D8B201F940E00E45B3D /* AddRepositoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepositoryVC.swift; sourceTree = "<group>"; };
 		92E36D8E201FA06200E45B3D /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		92E45FD42025305B00302435 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -109,16 +109,6 @@
 				924740C8201FB1D300A7F024 /* RepositoryCell.swift */,
 			);
 			path = RepositoriesVC;
-			sourceTree = "<group>";
-		};
-		924740C3201FAFC800A7F024 /* BaseClasses */ = {
-			isa = PBXGroup;
-			children = (
-				924740C4201FAFC800A7F024 /* BaseVC.swift */,
-				924740C5201FAFC800A7F024 /* BaseNC.swift */,
-			);
-			name = BaseClasses;
-			path = ../../../Opendota/Opendota/SourceCode/BaseClasses;
 			sourceTree = "<group>";
 		};
 		924740CA201FDB0E00A7F024 /* String */ = {
@@ -240,6 +230,15 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		92C0EE5F2040900E00D2DAC1 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				92C0EE602040900E00D2DAC1 /* BaseVC.swift */,
+				92C0EE612040900E00D2DAC1 /* BaseNC.swift */,
+			);
+			path = BaseClasses;
+			sourceTree = "<group>";
+		};
 		92E36D8A201F93FF00E45B3D /* AddRepositoryVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,8 +250,8 @@
 		92E36D90201FA28B00E45B3D /* SourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				92C0EE5F2040900E00D2DAC1 /* BaseClasses */,
 				92A2E49820253DAC00463F64 /* Firebase */,
-				924740C3201FAFC800A7F024 /* BaseClasses */,
 				92E36D96201FA2C900E45B3D /* Helpers */,
 				9282D48E200A783B0004E3AA /* Presentation */,
 				9299DCFE200D5AA80083BF1F /* Github */,
@@ -491,8 +490,8 @@
 				926309202007EFA100CD2329 /* AppDelegate.swift in Sources */,
 				92E36D8C201F940E00E45B3D /* AddRepositoryVC.swift in Sources */,
 				9299DD06200D5ABC0083BF1F /* AccessToken.swift in Sources */,
-				924740C7201FAFC800A7F024 /* BaseNC.swift in Sources */,
-				924740C6201FAFC800A7F024 /* BaseVC.swift in Sources */,
+				92C0EE632040900E00D2DAC1 /* BaseNC.swift in Sources */,
+				92C0EE622040900E00D2DAC1 /* BaseVC.swift in Sources */,
 				9299DD0E200D627B0083BF1F /* QueryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
