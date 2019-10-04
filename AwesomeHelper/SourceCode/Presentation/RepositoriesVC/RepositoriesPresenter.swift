@@ -8,9 +8,12 @@
 
 import Foundation
 import GithubAPI
+import FirebaseAuth
+import Firebase
+import FirebaseSDK
 
 class RepositoriesPresenter: BasePresenter {
-    var repositories: [Repository] = []
+	var repositories: ObjectCollection<Repository>!
     
     override var view: RepositoriesVC {
         return _view as! RepositoriesVC
@@ -19,6 +22,7 @@ class RepositoriesPresenter: BasePresenter {
     
     func refreshData() {
         self.view.showHUD()
+		self.repositories = ObjectCollection<Repository>(id: FirebaseApp.)
         Repository.all { (repositories) in
             self.view.hideHUD()
             self.repositories = repositories

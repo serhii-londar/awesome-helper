@@ -9,7 +9,7 @@
 import UIKit
 import SwipeCellKit
 import Font_Awesome_Swift
-import FireRecord
+import FirebaseSDK
 
 class RepositoriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil

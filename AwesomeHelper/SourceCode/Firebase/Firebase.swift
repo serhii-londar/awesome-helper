@@ -7,26 +7,93 @@
 //
 
 import Foundation
-import FireRecord
+import FirebaseSDK
 
-class Repository: FireRecord {
+class Repository: Object {
     var name : String?
     var owner : String?
     var url : String?
-    var queries: [String] = [String]()
-    var reviewedRepositories: [String] = [String]()
+    var queries: ObjectsRelation<Query>? = nil
+    var reviewedRepositories: ObjectsRelation<ReviewedRepository>? = nil
+	
+    override func initialize() {
+        self.queries = ObjectsRelation<Query>(parent: self)
+        self.reviewedRepositories = ObjectsRelation<ReviewedRepository>(parent: self)
+    }
+	
+    override func setValue(_ value: Any?, forKey key: String) {
+		let dict = value as? [AnyHashable : Any] ?? [:]
+        if key == "queries" {
+			self.queries?.update(dict: dict)
+        } else if key == "reviewedRepositories" {
+            self.reviewedRepositories?.update(dict: dict)
+        } else {
+            super.setValue(value, forKey: key)
+        }
+    }
+    
+    override func value(forKey key: String) -> Any? {
+        if key == "queries" {
+            return self.queries
+        } else if key == "reviewedRepositories" {
+            return self.reviewedRepositories
+        }
+        return super.value(forKey: key)
+    }
 }
 
-class Query: FireRecord {
+class Query: Object {
     var query: String?
-    var repository: String?
+    var repository: ObjectsRelation<Repository>?
+	
+    override func initialize() {
+        self.repository = ObjectsRelation<Repository>(parent: self)
+    }
+	
+    override func setValue(_ value: Any?, forKey key: String) {
+		let dict = value as? [AnyHashable : Any] ?? [:]
+        if key == "repository" {
+			self.repository?.update(dict: dict)
+		} else {
+            super.setValue(value, forKey: key)
+        }
+    }
+    
+    override func value(forKey key: String) -> Any? {
+        if key == "repository" {
+            return self.repository
+		} else {
+			return super.value(forKey: key)
+		}
+    }
 }
 
 
-class ReviewedRepository: FireRecord {
+class ReviewedRepository: Object {
     var name : String?
     var owner : String?
     var url : String?
     var aproved : Bool?
-    var repository: String?
+    var repository: ObjectsRelation<Repository>?
+	
+    override func initialize() {
+        self.repository = ObjectsRelation<Repository>(parent: self)
+    }
+	
+    override func setValue(_ value: Any?, forKey key: String) {
+		let dict = value as? [AnyHashable : Any] ?? [:]
+        if key == "repository" {
+			self.repository?.update(dict: dict)
+		} else {
+            super.setValue(value, forKey: key)
+        }
+    }
+    
+    override func value(forKey key: String) -> Any? {
+        if key == "repository" {
+            return self.repository
+		} else {
+			return super.value(forKey: key)
+		}
+    }
 }

@@ -11,5 +11,5 @@ target 'AwesomeHelper' do
   pod 'NSDate+TimeAgo'
   pod 'SwiftGen'
   pod 'Font-Awesome-Swift'
-  pod 'FireRecord'
+  pod 'FirebaseSDK', :path => "./../FirebaseSDK/"
 end
