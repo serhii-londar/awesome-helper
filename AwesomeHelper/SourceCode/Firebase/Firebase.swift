@@ -9,12 +9,14 @@
 import Foundation
 import FirebaseSDK
 
-class Repository: Object {
-    var name : String?
-    var owner : String?
-    var url : String?
-    var queries: ObjectsRelation<Query>? = nil
-    var reviewedRepositories: ObjectsRelation<ReviewedRepository>? = nil
+class Repositories: ObjectCollection<Repository> { }
+
+@objcMembers class Repository: Object {
+    var name : String = ""
+    var owner : String = ""
+    var url : String = ""
+    var queries: ObjectsRelation<Query>!
+    var reviewedRepositories: ObjectsRelation<ReviewedRepository>!
 	
     override func initialize() {
         self.queries = ObjectsRelation<Query>(parent: self)
@@ -42,9 +44,9 @@ class Repository: Object {
     }
 }
 
-class Query: Object {
-    var query: String?
-    var repository: ObjectsRelation<Repository>?
+@objcMembers class Query: Object {
+    var query: String = ""
+    var repository: ObjectsRelation<Repository>!
 	
     override func initialize() {
         self.repository = ObjectsRelation<Repository>(parent: self)
@@ -69,12 +71,12 @@ class Query: Object {
 }
 
 
-class ReviewedRepository: Object {
-    var name : String?
-    var owner : String?
-    var url : String?
-    var aproved : Bool?
-    var repository: ObjectsRelation<Repository>?
+@objcMembers class ReviewedRepository: Object {
+    var name : String = ""
+    var owner : String = ""
+    var url : String = ""
+    var aproved : Bool = false
+    var repository: ObjectsRelation<Repository>!
 	
     override func initialize() {
         self.repository = ObjectsRelation<Repository>(parent: self)

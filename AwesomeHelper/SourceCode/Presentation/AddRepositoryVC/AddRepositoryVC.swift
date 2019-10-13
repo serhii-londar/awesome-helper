@@ -8,6 +8,7 @@
 
 import UIKit
 import GithubAPI
+import FirebaseSDK
 
 class AddRepositoryVC: BaseVC {
     @IBOutlet weak var repositoryOwnerTextField: UITextField! = nil
@@ -28,21 +29,5 @@ class AddRepositoryVC: BaseVC {
         } else {
             self.showErrorAlert("Please enter repository owner and name.")
         }
-    }
-    
-    
-    
-    func addRepository(_ repo: RepositoryResponse, name: String, owner: String) {
-        let repository = Repository()
-        repository.name = repositoryNameTextField.text!
-        repository.owner = repositoryOwnerTextField.text!
-        repository.url = repo.htmlUrl ?? "empty"
-		repository.save({ (error, ref) in
-			if let error = error {
-				self.showErrorAlert(error.localizedDescription)
-			} else {
-				self.navigationController?.popViewController(animated: true)
-			}
-		})
     }
 }

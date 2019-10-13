@@ -10,6 +10,8 @@ import Foundation
 import GithubAPI
 
 class AddRepositoryPresenter: BasePresenter {
+    var repositories: Repositories!
+    
     override var view: AddRepositoryVC {
         return _view as! AddRepositoryVC
     }
@@ -29,11 +31,11 @@ class AddRepositoryPresenter: BasePresenter {
     }
     
     func addRepositoryToFirebase(_ repo: RepositoryResponse, name: String, owner: String) {
-        let repository = Repository()
+        let repository = repositories.createNewObject()
         repository.name = name
         repository.owner = owner
         repository.url = repo.htmlUrl ?? "empty"
-        repository.save { (error) in
+        repository.save { (error, ref) in
             if let error = error {
                 self.view.showErrorAlert(error.localizedDescription)
             } else {

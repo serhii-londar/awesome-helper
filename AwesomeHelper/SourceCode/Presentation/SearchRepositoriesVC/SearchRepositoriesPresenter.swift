@@ -26,6 +26,7 @@ class SearchRepositoriesPresenter: BasePresenter {
         self.readmeString = readmeString
         self.searchQuery = searchQuery
         self.repository = repository
+        self.reviewedRepositories = self.repository.reviewedRepositories.objects
     }
     
     override var view: SearchRepositoriesVC {
@@ -43,6 +44,7 @@ class SearchRepositoriesPresenter: BasePresenter {
     }
     
     func filterRepositories() {
+        self.reviewedRepositories = self.repository.reviewedRepositories.objects
         self.repositoriesToDisplay = self.repositories.filter({ (item) -> Bool in
             let reviewed = self.reviewedRepositories.filter({ (repo) -> Bool in
                 return repo.url == item.htmlUrl!
@@ -53,29 +55,24 @@ class SearchRepositoriesPresenter: BasePresenter {
     }
     
     func refreshData() {
-        
         self.view.showHUD()
-        
-        ReviewedRepository.order(byProperty: "repository").where(value: self.repository.key!).find { (reviewedRepositories) in
-            self.reviewedRepositories = reviewedRepositories
-            SearchAPI().searchRepositories(q: self.searchQuery.query!) { (response, error) in
-                self.view.hideHUD()
-                if let response = response {
-                    DispatchQueue.main.async {
-                        self.repositoriesCount = response.totalCount!
-                        self.repositories = response.items!
-                        self.filterRepositories()
-                        self.view.tableView.reloadData()
-                        if self.repositoriesToDisplay.count == 0 {
-                            self.view.tableView.footer?.start()
-                        }
-                    }
-                } else if let error = error {
-                    self.view.showErrorAlert(error.localizedDescription)
-                }
+        SearchAPI().searchRepositories(q: self.searchQuery.query) { (response, error) in
+            self.view.hideHUD()
+            if let response = response {
                 DispatchQueue.main.async {
-                    self.view.tableView.es.stopPullToRefresh()
+                    self.repositoriesCount = response.totalCount!
+                    self.repositories = response.items!
+                    self.filterRepositories()
+                    self.view.tableView.reloadData()
+                    if self.repositoriesToDisplay.count == 0 {
+                        self.view.tableView.footer?.start()
+                    }
                 }
+            } else if let error = error {
+                self.view.showErrorAlert(error.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                self.view.tableView.es.stopPullToRefresh()
             }
         }
     }
@@ -83,7 +80,7 @@ class SearchRepositoriesPresenter: BasePresenter {
     func loadMoreData() {
         self.view.showHUD()
         let pageNumber = Int(self.repositories.count / 100) + 1
-        SearchAPI().searchRepositories(q: self.searchQuery.query!, page: pageNumber, per_page: 100, completion: { (response, error) in
+        SearchAPI().searchRepositories(q: self.searchQuery.query, page: pageNumber, per_page: 100, completion: { (response, error) in
             if let response = response {
                 DispatchQueue.main.async {
                     self.repositories.append(contentsOf: response.items ?? [])
@@ -118,16 +115,16 @@ class SearchRepositoriesPresenter: BasePresenter {
         reviewedRepository.owner = repo.owner?.login ?? ""
         reviewedRepository.url = repo.htmlUrl!
         reviewedRepository.aproved = false
-        reviewedRepository.repository = self.repository.key
+        
         self.view.showHUD()
-        reviewedRepository.save(completion: { (error) in
+        
+        reviewedRepository.save({ (error, ref) in
             if let error = error {
                 self.view.hideHUD()
                 self.view.showErrorAlert(error.localizedDescription)
             } else {
-                self.reviewedRepositories.append(reviewedRepository)
-                self.repository.reviewedRepositories.append(reviewedRepository.key!)
-                self.repository.update(completion: { (error) in
+                self.repository.reviewedRepositories.addObject(reviewedRepository)
+                self.repository.save({ (error, ref) in
                     self.view.hideHUD()
                     if let error = error {
                         self.view.showErrorAlert(error.localizedDescription)
@@ -146,7 +143,7 @@ class SearchRepositoriesPresenter: BasePresenter {
         issue.body = "[\(repo.name!)](\(repo.htmlUrl!)) - \(repo.descriptionField ?? "Need to find description") \n Language - \(repo.language ?? "No Language")"
         self.view.showHUD()
         let authentication = TokenAuthentication(token: (self.authentication.token?.token)!)
-        IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner!, repository: self.repository.name!, issue: issue, completion: { (response, error) in
+        IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner, repository: self.repository.name, issue: issue, completion: { (response, error) in
             if response != nil {
                 DispatchQueue.main.async {
                     let reviewedRepository = ReviewedRepository()
@@ -154,20 +151,18 @@ class SearchRepositoriesPresenter: BasePresenter {
                     reviewedRepository.owner = repo.owner?.login ?? ""
                     reviewedRepository.url = repo.htmlUrl!
                     reviewedRepository.aproved = true
-                    reviewedRepository.repository = self.repository.key
-                    reviewedRepository.save(completion: { (error) in
+                    
+                    reviewedRepository.save({ (error, ref) in
                         if let error = error {
                             self.view.hideHUD()
                             self.view.showErrorAlert(error.localizedDescription)
                         } else {
-                            self.reviewedRepositories.append(reviewedRepository)
-                            self.repository.reviewedRepositories.append(reviewedRepository.key!)
-                            self.repository.update(completion: { (error) in
+                            self.repository.reviewedRepositories.addObject(reviewedRepository)
+                            self.repository.save({ (error, ref) in
+                                self.view.hideHUD()
                                 if let error = error {
-                                    self.view.hideHUD()
                                     self.view.showErrorAlert(error.localizedDescription)
                                 } else {
-                                    self.view.hideHUD()
                                     self.filterRepositories()
                                     self.view.tableView.reloadData()
                                 }

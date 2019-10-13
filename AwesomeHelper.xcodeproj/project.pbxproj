@@ -19,7 +19,6 @@
 		9263092A2007EFA100CD2329 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926309282007EFA100CD2329 /* LaunchScreen.storyboard */; };
 		9282D492200A78A60004E3AA /* SearchRepositoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9282D491200A78A60004E3AA /* SearchRepositoriesVC.swift */; };
 		9299DCFB200D47010083BF1F /* SearchRepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DCFA200D47010083BF1F /* SearchRepositoryCell.swift */; };
-		9299DD00200D5AA80083BF1F /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 9299DCFF200D5AA80083BF1F /* credentials.json */; };
 		9299DD06200D5ABC0083BF1F /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD02200D5ABC0083BF1F /* AccessToken.swift */; };
 		9299DD07200D5ABC0083BF1F /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD03200D5ABC0083BF1F /* Basic.swift */; };
 		9299DD08200D5ABC0083BF1F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD04200D5ABC0083BF1F /* Token.swift */; };
@@ -44,6 +43,7 @@
 		92E7D926200D318A0023F4F6 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7D925200D318A0023F4F6 /* WebVC.swift */; };
 		92E7D928200D363C0023F4F6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E7D927200D363C0023F4F6 /* WebKit.framework */; };
 		92E7D92A200D39450023F4F6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E7D929200D39450023F4F6 /* MobileCoreServices.framework */; };
+		E81D9E4A2353AB9200A406CC /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = E81D9E492353AB9200A406CC /* credentials.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,7 +75,6 @@
 		9263092B2007EFA100CD2329 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9282D491200A78A60004E3AA /* SearchRepositoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesVC.swift; sourceTree = "<group>"; };
 		9299DCFA200D47010083BF1F /* SearchRepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryCell.swift; sourceTree = "<group>"; };
-		9299DCFF200D5AA80083BF1F /* credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = credentials.json; sourceTree = "<group>"; };
 		9299DD02200D5ABC0083BF1F /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		9299DD03200D5ABC0083BF1F /* Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
 		9299DD04200D5ABC0083BF1F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		92E7D927200D363C0023F4F6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		92E7D929200D39450023F4F6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		B6CA79F501DB75245C9C1577 /* Pods-AwesomeHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeHelper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper.debug.xcconfig"; sourceTree = "<group>"; };
+		E81D9E492353AB9200A406CC /* credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = credentials.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +157,7 @@
 		9263091E2007EFA100CD2329 /* AwesomeHelper */ = {
 			isa = PBXGroup;
 			children = (
+				E81D9E492353AB9200A406CC /* credentials.json */,
 				92E36D90201FA28B00E45B3D /* SourceCode */,
 				9263091F2007EFA100CD2329 /* AppDelegate.swift */,
 				926309232007EFA100CD2329 /* Main.storyboard */,
@@ -217,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				9299DD01200D5ABC0083BF1F /* Authentification */,
-				9299DCFF200D5AA80083BF1F /* credentials.json */,
 			);
 			path = Github;
 			sourceTree = "<group>";
@@ -383,7 +383,7 @@
 				92E45FD52025305B00302435 /* GoogleService-Info.plist in Resources */,
 				9263092A2007EFA100CD2329 /* LaunchScreen.storyboard in Resources */,
 				926309272007EFA100CD2329 /* Assets.xcassets in Resources */,
-				9299DD00200D5AA80083BF1F /* credentials.json in Resources */,
+				E81D9E4A2353AB9200A406CC /* credentials.json in Resources */,
 				926309252007EFA100CD2329 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
