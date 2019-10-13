@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FireRecord
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,14 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        FireRecordApp.configure()
-        self.window = UIWindow(frame: UIScreen.main.bounds)
+		
+		FirebaseApp.configure()
         
-        let repositoriesVC = Storyboards.Main.instantiateRepositoriesVC()
-        let repositoriesRouter = BaseRouter(view: repositoriesVC)
-        let repositoriesPresenter = RepositoriesPresenter(view: repositoriesVC, router: repositoriesRouter)
-        let module = Module(view: repositoriesVC, presenter: repositoriesPresenter, router: repositoriesRouter)
-        self.showModule(module)
+        Auth.auth().signInAnonymously { (result, error) in
+            let repositoriesVC = Storyboards.Main.instantiateRepositoriesVC()
+            let repositoriesRouter = BaseRouter(view: repositoriesVC)
+            let repositoriesPresenter = RepositoriesPresenter(view: repositoriesVC, router: repositoriesRouter)
+            let module = Module(view: repositoriesVC, presenter: repositoriesPresenter, router: repositoriesRouter)
+            self.showModule(module)
+        }
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
         
         return true
     }

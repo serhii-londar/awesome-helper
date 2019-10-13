@@ -9,7 +9,7 @@
 import UIKit
 import SwipeCellKit
 import Font_Awesome_Swift
-import FireRecord
+import FirebaseSDK
 
 class RepositoriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
@@ -22,9 +22,9 @@ class RepositoriesVC: BaseVC {
         super.viewWillAppear(animated)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.tableFooterView = UIView()
-        self.tableView.reloadData()
+        self.tableView.tableFooterView = UIView(frame: .zero)
         self.presenter.refreshData()
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {

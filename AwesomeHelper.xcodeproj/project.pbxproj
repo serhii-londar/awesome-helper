@@ -19,7 +19,6 @@
 		9263092A2007EFA100CD2329 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926309282007EFA100CD2329 /* LaunchScreen.storyboard */; };
 		9282D492200A78A60004E3AA /* SearchRepositoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9282D491200A78A60004E3AA /* SearchRepositoriesVC.swift */; };
 		9299DCFB200D47010083BF1F /* SearchRepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DCFA200D47010083BF1F /* SearchRepositoryCell.swift */; };
-		9299DD00200D5AA80083BF1F /* credentials.json in Resources */ = {isa = PBXBuildFile; fileRef = 9299DCFF200D5AA80083BF1F /* credentials.json */; };
 		9299DD06200D5ABC0083BF1F /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD02200D5ABC0083BF1F /* AccessToken.swift */; };
 		9299DD07200D5ABC0083BF1F /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD03200D5ABC0083BF1F /* Basic.swift */; };
 		9299DD08200D5ABC0083BF1F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299DD04200D5ABC0083BF1F /* Token.swift */; };
@@ -75,7 +74,6 @@
 		9263092B2007EFA100CD2329 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9282D491200A78A60004E3AA /* SearchRepositoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesVC.swift; sourceTree = "<group>"; };
 		9299DCFA200D47010083BF1F /* SearchRepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryCell.swift; sourceTree = "<group>"; };
-		9299DCFF200D5AA80083BF1F /* credentials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = credentials.json; sourceTree = "<group>"; };
 		9299DD02200D5ABC0083BF1F /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		9299DD03200D5ABC0083BF1F /* Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
 		9299DD04200D5ABC0083BF1F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				9299DD01200D5ABC0083BF1F /* Authentification */,
-				9299DCFF200D5AA80083BF1F /* credentials.json */,
 			);
 			path = Github;
 			sourceTree = "<group>";
@@ -330,7 +327,6 @@
 				9263091A2007EFA100CD2329 /* Resources */,
 				92AEF429200A409600906AA8 /* Embed Frameworks */,
 				36EF6FABBC182D27581D7C69 /* [CP] Embed Pods Frameworks */,
-				F29500AB2E08ABDD7E38B236 /* [CP] Copy Pods Resources */,
 				92E36D8D201FA00D00E45B3D /* ShellScript */,
 			);
 			buildRules = (
@@ -384,7 +380,6 @@
 				92E45FD52025305B00302435 /* GoogleService-Info.plist in Resources */,
 				9263092A2007EFA100CD2329 /* LaunchScreen.storyboard in Resources */,
 				926309272007EFA100CD2329 /* Assets.xcassets in Resources */,
-				9299DD00200D5AA80083BF1F /* credentials.json in Resources */,
 				926309252007EFA100CD2329 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,42 +393,38 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BaseAPI/BaseAPI.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/FireRecord/FireRecord.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCommunity/FirebaseCommunity.framework",
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GithubAPI/GithubAPI.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NSDate+TimeAgo/NSDate_TimeAgo.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseAPI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FireRecord.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCommunity.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GithubAPI.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDate_TimeAgo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8CA88D92170AC48B246CA2E6 /* [CP] Check Pods Manifest.lock */ = {
@@ -466,21 +457,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo \"Natalie Generator: Determining if generated Swift file is up-to-date.\"\n\n# Adjust path to \"natalie\" binary\n# NATALIE_PATH=\"$PROJECT_DIR/natalie\"\nNATALIE_PATH=\"/usr/local/bin/natalie\"\n\nif [ -f $NATALIE_PATH ]; then\nBASE_PATH=\"$PROJECT_DIR/$PROJECT_NAME\"\nOUTPUT_PATH=\"$BASE_PATH/SourceCode/Presentation/Storyboards.swift\"\n\nif [ ! -e \"$OUTPUT_PATH\" ] || [ -n \"$(find \"$BASE_PATH\" -type f -name \"*.storyboard\" -newer \"$OUTPUT_PATH\" -print -quit)\" ]; then\necho \"Natalie Generator: Generated Swift is out-of-date; re-generating...\"\n\n/usr/bin/chflags nouchg \"$OUTPUT_PATH\"\n\"$NATALIE_PATH\" \"$BASE_PATH\" > \"$OUTPUT_PATH\"\n/usr/bin/chflags uchg \"$OUTPUT_PATH\"\n\necho \"Natalie Generator: Done.\"\nelse\necho \"Natalie Generator: Generated Swift is up-to-date; skipping re-generation.\"\nfi\nfi";
-		};
-		F29500AB2E08ABDD7E38B236 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeHelper/Pods-AwesomeHelper-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
