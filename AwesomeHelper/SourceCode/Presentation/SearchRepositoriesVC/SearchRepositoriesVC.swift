@@ -11,6 +11,7 @@ import UIKit
 import ESPullToRefresh
 import SwipeCellKit
 import Font_Awesome_Swift
+import GithubAPI
 
 class SearchRepositoriesVC: BaseVC {
     @IBOutlet weak var tableView: UITableView! = nil
@@ -43,7 +44,15 @@ class SearchRepositoriesVC: BaseVC {
         }
         
         self.tableView.es.startPullToRefresh()
-        
+    }
+    
+    func login() {
+        let loginVC = GithubLoginVC(clientID: "07433363de7de028229f", clientSecret: "add7ac2abdc6e81fa7ee19c824907a55f0877bb9", redirectURL: "https://github.com/serhii-londar/GithubIssues")
+        loginVC.login(withScopes: [.repo], allowSignup: false, completion: { (token) in
+            self.presenter.token = token
+        }) { (error) in
+            self.showErrorAlert(error.localizedDescription)
+        }
     }
 }
 

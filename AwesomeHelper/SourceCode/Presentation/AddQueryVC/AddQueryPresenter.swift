@@ -30,37 +30,39 @@ class AddQueryPresenter: BasePresenter {
     }
     
     func addQuery(_ queryText: String) {
-            query?.query = queryText
-            query?.repository = repository.key
-            self.view.showHUD()
-            query?.save(completion: { (error) in
-                if let error = error {
+        query = Query()
+        guard let query = query else { return }
+        query.query = queryText
+        self.view.showHUD()
+        query.save { (error, ref) in
+            if let error = error {
+                self.view.hideHUD()
+                self.view.showErrorAlert(error.localizedDescription)
+            } else {
+                self.repository.queries.addObject(query)
+                self.repository.save { (error, ref) in
                     self.view.hideHUD()
-                    self.view.showErrorAlert(error.localizedDescription)
-                } else {
-                    self.repository.queries.insert((self.query?.key)!, at: 0)
-                    self.repository.update (completion: { (error) in
-                        self.view.hideHUD()
-                        if let error = error {
-                            self.view.showErrorAlert(error.localizedDescription)
-                        } else {
-                            self.router.pop()
-                        }
-                    })
+                    if let error = error {
+                        self.view.showErrorAlert(error.localizedDescription)
+                    } else {
+                        self.router.pop()
+                    }
                 }
-            })
+            }
+        }
     }
     
     func editQuery(_ queryText: String) {
-        query?.query = queryText
+        guard let query = query else { return }
+        query.query = queryText
         self.view.showHUD()
-        query?.update(completion: { (error) in
+        query.save { (error, ref) in
             self.view.hideHUD()
             if let error = error {
                 self.view.showErrorAlert(error.localizedDescription)
             } else {
                 self.router.pop()
             }
-        })
+        }
     }
 }

@@ -8,22 +8,28 @@
 
 import Foundation
 import GithubAPI
+import FirebaseAuth
+import Firebase
+import FirebaseSDK
 
 class RepositoriesPresenter: BasePresenter {
-    var repositories: [Repository] = []
+    var handlerId = -1
+    var repositories: Repositories = {
+        let id = FirebaseAuth().id
+        let r = Repositories(id: id!)
+        return r
+    }()
     
     override var view: RepositoriesVC {
         return _view as! RepositoriesVC
     }
     
-    
     func refreshData() {
-        self.view.showHUD()
-        Repository.all { (repositories) in
-            self.view.hideHUD()
-            self.repositories = repositories
+//        self.view.showHUD()
+        handlerId = repositories.addHendler({ (change) in
+//            self.view.hideHUD()
             self.view.tableView.reloadData()
-        }
+        })
     }
     
     func addRepository() {
@@ -31,6 +37,7 @@ class RepositoriesPresenter: BasePresenter {
         let addRepositoryVC = Storyboards.Main.instantiateAddRepositoryVC()
         let addRepositoryRouter = BaseRouter(view: addRepositoryVC)
         let addRepositoryPresenter = AddRepositoryPresenter(view: addRepositoryVC, router: addRepositoryRouter)
+        addRepositoryPresenter.repositories = repositories
         
         self.router.push(addRepositoryPresenter.view, animated: true)
     }
@@ -39,7 +46,7 @@ class RepositoriesPresenter: BasePresenter {
     func openRepositoryAtIndex(_ index: Int) {
         self.view.showHUD()
         let repo = self.repositories[index]
-        RepositoriesContentsAPI().getReadme(owner: repo.owner!, repo: repo.name!) { (response, error) in
+        RepositoriesContentsAPI().getReadme(owner: repo.owner, repo: repo.name) { (response, error) in
             DispatchQueue.main.async {
                 self.view.hideHUD()
                 if let response = response, let readmeString = response.content?.fromBase64()?.lowercased() {
@@ -57,30 +64,10 @@ class RepositoriesPresenter: BasePresenter {
     
     func removeRepositoryAtIndex(_ index: Int) {
         DispatchQueue.main.async {
-            let repo = self.repositories[index]
-            
-            Query.order(byProperty: "repository").where(value: repo.key!).observeFind { (queries) in
-                let queriesToRemove = queries
-                
-                for query in queriesToRemove {
-                    query.destroy(completion: { (error) in
-                        
-                    })
-                }
-            }
-            
-            ReviewedRepository.order(byProperty: "repository").where(value: repo.key!).find { (reviewedRepositories) in
-                let reviewedRepositoriesToRemove = reviewedRepositories
-                for reviewedRepository in reviewedRepositoriesToRemove {
-                    reviewedRepository.destroy(completion: { (error) in
-                        
-                    })
-                }
-            }
-            
-            repo.destroy(completion: { (error) in
-                self.refreshData()
-            })
+            let repository = self.repositories[index]
+            repository.queries.objects.forEach({ $0.delete() })
+            repository.reviewedRepositories.objects.forEach({ $0.delete() })
+            self.repositories.remove(at: index)
         }
     }
 }

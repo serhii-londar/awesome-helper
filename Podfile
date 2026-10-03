@@ -3,7 +3,7 @@ platform :ios, '11.0'
 target 'AwesomeHelper' do
   use_frameworks!
 
-  pod 'GithubAPI'
+  pod 'GithubAPI', :path => "./../GithubAPI/"
   pod 'SVProgressHUD'
   pod 'ESPullToRefresh'
   pod 'SwipeCellKit'
@@ -11,5 +11,5 @@ target 'AwesomeHelper' do
   pod 'NSDate+TimeAgo'
   pod 'SwiftGen'
   pod 'Font-Awesome-Swift'
-  pod 'FireRecord'
+  pod 'FirebaseSDK', :path => "./../FirebaseSDK/"
 end
