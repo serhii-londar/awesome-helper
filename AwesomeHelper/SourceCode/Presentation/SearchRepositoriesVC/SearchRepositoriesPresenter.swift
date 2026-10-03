@@ -19,7 +19,18 @@ class SearchRepositoriesPresenter: BasePresenter {
     var reviewedRepositories: [ReviewedRepository] = [ReviewedRepository]()
     
     var repositoriesCount: Int = 0
-    var authentication: Credentials! = nil
+    var authentication: Authentication? {
+        guard let token = UserDefaults.standard.string(forKey: "github_token") else { return nil }
+        return TokenAuthentication(token: token)
+    }
+    
+    var token: String! {
+        didSet {
+            UserDefaults.standard.set(token, forKey: "github_token")
+            UserDefaults.standard.synchronize()
+            self.refreshData()
+        }
+    }
     
     init(view: SearchRepositoriesVC, router: BaseRouter, readmeString: String, searchQuery: Query, repository: Repository) {
         super.init(view: view, router: router)
@@ -39,8 +50,9 @@ class SearchRepositoriesPresenter: BasePresenter {
     }
     
     func initAuthentication() {
-        let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "credentials", ofType: "json")!))
-        self.authentication = try? JSONDecoder().decode(Credentials.self, from: data!)
+        if  self.authentication == nil {
+//            self.view.login()
+        }
     }
     
     func filterRepositories() {
@@ -138,11 +150,11 @@ class SearchRepositoriesPresenter: BasePresenter {
     }
     
     func addRepoAtIndex(_ index: Int) {
+        guard let authentification = self.authentication else { return }
         let repo = self.repositoriesToDisplay[index]
         var issue = Issue(title: repo.fullName!)
         issue.body = "[\(repo.name!)](\(repo.htmlUrl!)) - \(repo.descriptionField ?? "Need to find description") \n Language - \(repo.language ?? "No Language")"
         self.view.showHUD()
-        let authentication = TokenAuthentication(token: (self.authentication.token?.token)!)
         IssuesAPI(authentication: authentication).createIssue(owner: self.repository.owner, repository: self.repository.name, issue: issue, completion: { (response, error) in
             if response != nil {
                 DispatchQueue.main.async {

@@ -31,7 +31,7 @@ class AddRepositoryPresenter: BasePresenter {
     }
     
     func addRepositoryToFirebase(_ repo: RepositoryResponse, name: String, owner: String) {
-        let repository = repositories.createNewObject()
+        let repository = repositories.create()
         repository.name = name
         repository.owner = owner
         repository.url = repo.htmlUrl ?? "empty"

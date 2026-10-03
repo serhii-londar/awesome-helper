@@ -1,113 +1,110 @@
 PODS:
-  - BaseAPI (0.1.2)
-  - ESPullToRefresh (2.7)
-  - Firebase/Auth (6.8.1):
+  - BaseAPI (0.1.12)
+  - ESPullToRefresh (2.9.3)
+  - Firebase/Auth (7.3.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 6.2.3)
-  - Firebase/Core (6.8.1):
+    - FirebaseAuth (~> 7.3.0)
+  - Firebase/Core (7.3.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.1.1)
-  - Firebase/CoreOnly (6.8.1):
-    - FirebaseCore (= 6.2.3)
-  - Firebase/Database (6.8.1):
+    - FirebaseAnalytics (= 7.3.0)
+  - Firebase/CoreOnly (7.3.0):
+    - FirebaseCore (= 7.3.0)
+  - Firebase/Database (7.3.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 6.1.0)
-  - Firebase/Storage (6.8.1):
+    - FirebaseDatabase (~> 7.3.0)
+  - Firebase/Storage (7.3.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (~> 3.4.1)
-  - FirebaseAnalytics (6.1.1):
-    - FirebaseCore (~> 6.2)
-    - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.1.1)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3)
-  - FirebaseAuth (6.2.3):
-    - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 6.2)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
-    - GoogleUtilities/Environment (~> 6.2)
-    - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.2.3):
-    - FirebaseCoreDiagnostics (~> 1.0)
-    - FirebaseCoreDiagnosticsInterop (~> 1.0)
-    - GoogleUtilities/Environment (~> 6.2)
-    - GoogleUtilities/Logger (~> 6.2)
-  - FirebaseCoreDiagnostics (1.0.1):
-    - FirebaseCoreDiagnosticsInterop (~> 1.0)
-    - GoogleDataTransportCCTSupport (~> 1.0)
-    - GoogleUtilities/Environment (~> 6.2)
-    - GoogleUtilities/Logger (~> 6.2)
-  - FirebaseCoreDiagnosticsInterop (1.0.0)
-  - FirebaseDatabase (6.1.0):
-    - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 6.0)
-    - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (4.2.5):
-    - FirebaseCore (~> 6.0)
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/UserDefaults (~> 6.0)
+    - FirebaseStorage (~> 7.3.0)
+  - FirebaseAnalytics (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleAppMeasurement (= 7.3.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30906.0)
+  - FirebaseAuth (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GTMSessionFetcher/Core (~> 1.4)
+  - FirebaseCore (7.3.0):
+    - FirebaseCoreDiagnostics (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+  - FirebaseCoreDiagnostics (7.3.0):
+    - GoogleDataTransport (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+    - nanopb (~> 2.30906.0)
+  - FirebaseDatabase (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - leveldb-library (~> 1.22)
+  - FirebaseInstallations (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - PromisesObjC (~> 1.2)
   - FirebaseSDK (0.1.0):
     - Firebase/Auth
     - Firebase/Core
     - Firebase/Database
     - Firebase/Storage
-  - FirebaseStorage (3.4.1):
-    - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 6.0)
-    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseStorage (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - GTMSessionFetcher/Core (~> 1.4)
   - Font-Awesome-Swift (1.7.2)
-  - GithubAPI (0.0.4):
+  - GithubAPI (0.0.6):
     - BaseAPI
-  - GoogleAppMeasurement (6.1.1):
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (~> 0.3)
-  - GoogleDataTransport (1.2.0)
-  - GoogleDataTransportCCTSupport (1.0.4):
-    - GoogleDataTransport (~> 1.2)
-    - nanopb
-  - GoogleUtilities/AppDelegateSwizzler (6.3.0):
+  - GoogleAppMeasurement (7.3.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30906.0)
+  - GoogleDataTransport (8.1.0):
+    - nanopb (~> 2.30906.0)
+  - GoogleUtilities/AppDelegateSwizzler (7.1.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.3.0)
-  - GoogleUtilities/Logger (6.3.0):
+  - GoogleUtilities/Environment (7.1.1):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.1.1):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.3.0):
+  - GoogleUtilities/MethodSwizzler (7.1.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.3.0):
+  - GoogleUtilities/Network (7.1.1):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.3.0)"
-  - GoogleUtilities/Reachability (6.3.0):
+  - "GoogleUtilities/NSData+zlib (7.1.1)"
+  - GoogleUtilities/Reachability (7.1.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.3.0):
+  - GoogleUtilities/UserDefaults (7.1.1):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.2.2)
-  - Kingfisher (4.6.1)
+  - GTMSessionFetcher/Core (1.5.0)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
   - leveldb-library (1.22)
-  - nanopb (0.3.901):
-    - nanopb/decode (= 0.3.901)
-    - nanopb/encode (= 0.3.901)
-  - nanopb/decode (0.3.901)
-  - nanopb/encode (0.3.901)
+  - nanopb (2.30906.0):
+    - nanopb/decode (= 2.30906.0)
+    - nanopb/encode (= 2.30906.0)
+  - nanopb/decode (2.30906.0)
+  - nanopb/encode (2.30906.0)
   - "NSDate+TimeAgo (1.0.6)"
-  - SVProgressHUD (2.2.2)
-  - SwiftGen (5.2.1)
-  - SwipeCellKit (2.0.1)
+  - PromisesObjC (1.2.11)
+  - SVProgressHUD (2.2.5)
+  - SwiftGen (6.4.0)
+  - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
   - ESPullToRefresh
   - FirebaseSDK (from `./../FirebaseSDK/`)
   - Font-Awesome-Swift
-  - GithubAPI
+  - GithubAPI (from `./../GithubAPI/`)
   - Kingfisher
   - "NSDate+TimeAgo"
   - SVProgressHUD
@@ -115,30 +112,27 @@ DEPENDENCIES:
   - SwipeCellKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - BaseAPI
     - ESPullToRefresh
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
-    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreDiagnostics
-    - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
-    - FirebaseInstanceID
+    - FirebaseInstallations
     - FirebaseStorage
     - Font-Awesome-Swift
-    - GithubAPI
     - GoogleAppMeasurement
     - GoogleDataTransport
-    - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - GTMSessionFetcher
     - Kingfisher
     - leveldb-library
     - nanopb
     - "NSDate+TimeAgo"
+    - PromisesObjC
     - SVProgressHUD
     - SwiftGen
     - SwipeCellKit
@@ -146,36 +140,36 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   FirebaseSDK:
     :path: "./../FirebaseSDK/"
+  GithubAPI:
+    :path: "./../GithubAPI/"
 
 SPEC CHECKSUMS:
-  BaseAPI: e234e06c832a85154f34f09d6b626364059b1638
-  ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
-  Firebase: 9cbe4e5b5eaafa05dc932be58b7c8c3820d71e88
-  FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
-  FirebaseAuth: e7f86c2dfc57281cd01f7da5e4b40e01e4510a4a
-  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: e9d9bd1dae61c1e82bc1e0e617a9d832392086a0
-  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
-  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
-  FirebaseDatabase: 518cd94286de2ee999e19383a2a6ae04c81ce993
-  FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
+  BaseAPI: 84c9b49d75b8be1e9d7facd66bd14082eee499e4
+  ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
+  Firebase: 26223c695fe322633274198cb19dca8cb7e54416
+  FirebaseAnalytics: 2580c2d62535ae7b644143d48941fcc239ea897a
+  FirebaseAuth: c224a0cf1afa0949bd5c7bfcf154b4f5ce8ddef2
+  FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
+  FirebaseCoreDiagnostics: d50e11039e5984d92c8a512be2395f13df747350
+  FirebaseDatabase: 22199cb121a527ae59df646d61426fbb12f5627a
+  FirebaseInstallations: 971df89b48ae5ee4cc2bf6935f3857a525d28550
   FirebaseSDK: b897b783a6e5528bf3869f521798270078ac203a
-  FirebaseStorage: b7c6d00997bc21d4465453bdcc5cc65513110fed
+  FirebaseStorage: 5002b1895bfe74a5ce92ad54f966e6162d0da2e5
   Font-Awesome-Swift: 83ab9db365379ee6025167cec67bdc5d3226a811
-  GithubAPI: f65be5a17f2cb5324c4b0fc418f1ab3e3952fcb7
-  GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
-  GoogleDataTransport: 8f9897b8e073687f24ca8d3c3a8013dec7d2d1cc
-  GoogleDataTransportCCTSupport: 7455d07b98851aa63e4c05a34dad356ca588479e
-  GoogleUtilities: 9c2c544202301110b29f7974a82e77fdcf12bf51
-  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  GithubAPI: bc5bfd90489f5138a8d1e00003b18abe31579eb0
+  GoogleAppMeasurement: 8d3c0aeede16ab7764144b5a4ca8e1d4323841b7
+  GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
+  GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
-  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   "NSDate+TimeAgo": 35601c619b2d59290055e4fe76e61d97677a2360
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
-  SwiftGen: 444b4c467e512a4812b8a800d731643fd265139e
-  SwipeCellKit: 76888d93d1843dc568fdf38fff21b15dbbcf6b28
+  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
+  SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 74a0316f35f174c98a26fd351a5d08ac33facad8
+PODFILE CHECKSUM: 6de34e2f6a80c2316a0b07cc25d8e9ecfaeb85fa
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.10.0

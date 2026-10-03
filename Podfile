@@ -3,7 +3,7 @@ platform :ios, '11.0'
 target 'AwesomeHelper' do
   use_frameworks!
 
-  pod 'GithubAPI'
+  pod 'GithubAPI', :path => "./../GithubAPI/"
   pod 'SVProgressHUD'
   pod 'ESPullToRefresh'
   pod 'SwipeCellKit'
